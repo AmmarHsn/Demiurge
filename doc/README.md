@@ -1,7 +1,8 @@
 # How to make a class diagram from C++ codes
 
 1. Download [Umbrello](https://umbrello.kde.org/installation.php).
-   This software allows to reverse enginneer c++ to class diagram automaticly.
+   This software allows to reverse enginneer c++ codes to class diagram automatically.
+
 2. When you finished the download you can install it
 
 3. Once installed you can open it and click on _code importing wizard..._ located in the _code_ menu.
