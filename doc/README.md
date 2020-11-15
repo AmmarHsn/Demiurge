@@ -16,6 +16,12 @@
 
 ![Image](pictureSteps/u7.png)
 
+6. If you are in the _class diagram_ you can add classes in your class diagram. If there are links, extends, aggregations,... that you want add, you can do it using the corresponding tools on the top. Moreover, you can delete them if you want using _left-click_ then _delete_ on your keyboard. And finally another interesting feature is that you can modify easily attributes and methods that are in classes by _double-clicking_ on the class.
+
+7. When you finished your design and you want to export an image, _right-click_ on _class diagram_ and select _Export as picture..._
+
 ![Image](pictureSteps/u8.png)
+
+8. Take care to change the format of your exportation
 
 ![Image](pictureSteps/u9.png)
