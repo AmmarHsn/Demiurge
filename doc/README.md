@@ -4,13 +4,7 @@
    This software allows to reverse enginneer c++ to class diagram automaticly.
 2. When you finished the download you can install it
 
-![Image](pictureSteps/u1.png)
-
-![Image](pictureSteps/u2.png)
-
-![Image](pictureSteps/u3.png)
-
-![Image](pictureSteps/u4.png)
+3. Once installed you can open it and click on _code importing wizard..._
 
 ![Image](pictureSteps/u5.png)
 
