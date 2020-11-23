@@ -10,20 +10,22 @@
 
 #include "AutoMoDeBehaviourStop3Dot0.h"
 
-
-namespace argos {
+namespace argos
+{
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourStop3Dot0::AutoMoDeBehaviourStop3Dot0() {
+	AutoMoDeBehaviourStop3Dot0::AutoMoDeBehaviourStop3Dot0()
+	{
 		m_strLabel = "Stop";
 	}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourStop3Dot0::AutoMoDeBehaviourStop3Dot0(AutoMoDeBehaviourStop3Dot0* pc_behaviour) {
+	AutoMoDeBehaviourStop3Dot0::AutoMoDeBehaviourStop3Dot0(AutoMoDeBehaviourStop3Dot0 *pc_behaviour)
+	{
 		m_strLabel = pc_behaviour->GetLabel();
 		m_bLocked = pc_behaviour->IsLocked();
 		m_bOperational = pc_behaviour->IsOperational();
@@ -41,28 +43,43 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourStop3Dot0* AutoMoDeBehaviourStop3Dot0::Clone() {
+	AutoMoDeBehaviourStop3Dot0 *AutoMoDeBehaviourStop3Dot0::Clone()
+	{
 		return new AutoMoDeBehaviourStop3Dot0(this);
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourStop3Dot0::ControlStep() {
-		m_pcRobotDAO->SetWheelsVelocity(0,0);
+	void AutoMoDeBehaviourStop3Dot0::ControlStep()
+	{
+		m_pcRobotDAO->SetWheelsVelocity(0, 0);
+		m_pcRobotDAO->SetLEDsColor(m_cColorEmiterParameter);
 		m_bLocked = false;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourStop3Dot0::Init() {
+	void AutoMoDeBehaviourStop3Dot0::Init()
+	{
+		std::map<std::string, Real>::iterator it = m_mapParameters.find("cle");
+		if (it != m_mapParameters.end())
+		{
+			m_cColorEmiterParameter = GetColorParameter(it->second, true);
+		}
+		else
+		{
+			LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
+			THROW_ARGOSEXCEPTION("Missing Parameter");
+		}
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourStop3Dot0::Reset() {
+	void AutoMoDeBehaviourStop3Dot0::Reset()
+	{
 		m_bOperational = false;
 		ResumeStep();
 	}
@@ -70,7 +87,8 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourStop3Dot0::ResumeStep() {
+	void AutoMoDeBehaviourStop3Dot0::ResumeStep()
+	{
 		m_bOperational = true;
 	}
-}
+} // namespace argos
