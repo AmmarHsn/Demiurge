@@ -48,6 +48,8 @@ namespace argos {
             CColor m_cColorEmiterParameter;
 
 			bool IsObstacleInFront(CCI_EPuckProximitySensor::SReading s_prox_reading);
+
+			bool is3Dot0;
 	};
 }
 

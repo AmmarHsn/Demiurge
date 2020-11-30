@@ -31,6 +31,7 @@ namespace argos
 
 	private:
 		CColor m_cColorEmiterParameter;
+		bool is3Dot0;
 	};
 } // namespace argos
 
