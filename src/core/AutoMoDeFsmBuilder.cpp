@@ -44,6 +44,8 @@ namespace argos {
 
 		std::vector<std::string>::iterator it;
 		try {
+			it = std::find(vec_fsm_config.begin(), vec_fsm_config.end(), "--flavor");
+			m_flavor = atoi((*(it+1)).c_str());
 			it = std::find(vec_fsm_config.begin(), vec_fsm_config.end(), "--nstates");
 			m_unNumberStates = atoi((*(it+1)).c_str());
 			std::vector<std::string>::iterator first_state;
@@ -83,33 +85,61 @@ namespace argos {
 		UInt8 unBehaviourIdentifier =  atoi((*(vec_fsm_state_config.begin()+1)).c_str());
 
 		// Creation of the Behaviour object
-		switch(unBehaviourIdentifier) {
-			case 0:
-				cNewBehaviour = new AutoMoDeBehaviourExploration3Dot0();
+		switch(m_flavor){
+			case CHOCOLATE:
+				switch(unBehaviourIdentifier) {
+					case 0:
+						cNewBehaviour = new AutoMoDeBehaviourExploration();
+						break;
+					case 1:
+						cNewBehaviour = new AutoMoDeBehaviourStop();
+						break;
+					case 2:
+						cNewBehaviour = new AutoMoDeBehaviourPhototaxis();
+						break;
+					case 3:
+						cNewBehaviour = new AutoMoDeBehaviourAntiPhototaxis();
+						break;
+					case 4:
+						cNewBehaviour = new AutoMoDeBehaviourAttraction();
+						break;
+					case 5:
+						cNewBehaviour = new AutoMoDeBehaviourRepulsion();
+						break;
+					
+				}
 				break;
-			case 1:
-				cNewBehaviour = new AutoMoDeBehaviourStop3Dot0();
+			case TUTTIFRUTTI:
+				switch(unBehaviourIdentifier) {
+					case 0:
+						cNewBehaviour = new AutoMoDeBehaviourExploration3Dot0();
+						break;
+					case 1:
+						cNewBehaviour = new AutoMoDeBehaviourStop3Dot0();
+						break;
+					case 2:
+						cNewBehaviour = new AutoMoDeBehaviourPhototaxis();
+						break;
+					case 3:
+						cNewBehaviour = new AutoMoDeBehaviourAntiPhototaxis();
+						break;
+					case 4:
+						cNewBehaviour = new AutoMoDeBehaviourAttraction3Dot0();
+						break;
+					case 5:
+						cNewBehaviour = new AutoMoDeBehaviourRepulsion3Dot0();
+						break;
+					case 8:
+						cNewBehaviour = new AutoMoDeBehaviourGoToColor3Dot0();
+						break;
+					case 9:
+						cNewBehaviour = new AutoMoDeBehaviourGoAwayColor3Dot0();
+						break;
+					
+				}
 				break;
-			case 2:
-				cNewBehaviour = new AutoMoDeBehaviourPhototaxis();
-				break;
-			case 3:
-				cNewBehaviour = new AutoMoDeBehaviourAntiPhototaxis();
-				break;
-			case 4:
-				cNewBehaviour = new AutoMoDeBehaviourAttraction3Dot0();
-				break;
-			case 5:
-				cNewBehaviour = new AutoMoDeBehaviourRepulsion3Dot0();
-				break;
-			case 8:
-                cNewBehaviour = new AutoMoDeBehaviourGoToColor3Dot0();
-                break;
-            case 9:
-                cNewBehaviour = new AutoMoDeBehaviourGoAwayColor3Dot0();
-                break;
-			
 		}
+		
 		cNewBehaviour->SetIndex(unBehaviourIndex);
 		cNewBehaviour->SetIdentifier(unBehaviourIdentifier);
 
@@ -182,28 +212,54 @@ namespace argos {
 
 			UInt8 unConditionIdentifier = atoi((*(it+1)).c_str());
 
-			switch(unConditionIdentifier) {
-				case 0:
-					cNewCondition = new AutoMoDeConditionBlackFloor();
+			switch(m_flavor){
+				case CHOCOLATE:
+					switch(unConditionIdentifier) {
+						case 0:
+							cNewCondition = new AutoMoDeConditionBlackFloor();
+							break;
+						case 1:
+							cNewCondition = new AutoMoDeConditionGrayFloor();
+							break;
+						case 2:
+							cNewCondition = new AutoMoDeConditionWhiteFloor();
+							break;
+						case 3:
+							cNewCondition = new AutoMoDeConditionNeighborsCount();
+							break;
+						case 4:
+							cNewCondition = new AutoMoDeConditionInvertedNeighborsCount();
+							break;
+						case 5:
+							cNewCondition = new AutoMoDeConditionFixedProbability();
+							break;
+					}
 					break;
-				case 1:
-					cNewCondition = new AutoMoDeConditionGrayFloor();
+				case TUTTIFRUTTI:
+					switch(unConditionIdentifier) {
+						case 0:
+							cNewCondition = new AutoMoDeConditionBlackFloor();
+							break;
+						case 1:
+							cNewCondition = new AutoMoDeConditionGrayFloor();
+							break;
+						case 2:
+							cNewCondition = new AutoMoDeConditionWhiteFloor();
+							break;
+						case 3:
+							cNewCondition = new AutoMoDeConditionNeighborsCount();
+							break;
+						case 4:
+							cNewCondition = new AutoMoDeConditionInvertedNeighborsCount();
+							break;
+						case 5:
+							cNewCondition = new AutoMoDeConditionFixedProbability();
+							break;
+						case 7:
+							cNewCondition = new AutoMoDeConditionProbColor3Dot0();
+							break;
+					}
 					break;
-				case 2:
-					cNewCondition = new AutoMoDeConditionWhiteFloor();
-					break;
-				case 3:
-					cNewCondition = new AutoMoDeConditionNeighborsCount();
-					break;
-				case 4:
-					cNewCondition = new AutoMoDeConditionInvertedNeighborsCount();
-					break;
-				case 5:
-					cNewCondition = new AutoMoDeConditionFixedProbability();
-					break;
-				case 7:
-                    cNewCondition = new AutoMoDeConditionProbColor3Dot0();
-                    break;
 			}
 
 			cNewCondition->SetOriginAndExtremity(un_initial_state_index, unToBehaviour);

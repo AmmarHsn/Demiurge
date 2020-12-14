@@ -54,8 +54,7 @@ namespace argos
 	void AutoMoDeBehaviourStop3Dot0::ControlStep()
 	{
 		m_pcRobotDAO->SetWheelsVelocity(0, 0);
-		if(is3Dot0)
-			m_pcRobotDAO->SetLEDsColor(m_cColorEmiterParameter);
+		m_pcRobotDAO->SetLEDsColor(m_cColorEmiterParameter);
 		m_bLocked = false;
 	}
 
@@ -68,13 +67,11 @@ namespace argos
 		if (it != m_mapParameters.end())
 		{
 			m_cColorEmiterParameter = GetColorParameter(it->second, true);
-			is3Dot0 = true;
 		}
 		else
 		{
-			//LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
-			//THROW_ARGOSEXCEPTION("Missing Parameter");
-			is3Dot0 = false;
+			LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
+			THROW_ARGOSEXCEPTION("Missing Parameter");
 		}
 	}
 

@@ -26,6 +26,10 @@
 #include <iterator>
 #include <stdlib.h>
 
+#define CHOCOLATE 0
+#define TUTTIFRUTTI 1
+#define COCONUT 2
+
 namespace argos {
 	class AutoMoDeFsmBuilder {
 		public:
@@ -73,6 +77,8 @@ namespace argos {
 			const std::vector<UInt32> GetPossibleDestinationBehaviour(const UInt32& un_initial_state_index);
 
 			UInt32 m_unNumberStates;
+
+			UInt32 m_flavor;
 
 			AutoMoDeFiniteStateMachine* cFiniteStateMachine;
 

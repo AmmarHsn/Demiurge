@@ -30,7 +30,6 @@ namespace argos {
 		private:
 			UInt8 m_unRepulsionParameter;
             CColor m_cColorEmiterParameter;
-			bool is3Dot0;
 	};
 }
 
