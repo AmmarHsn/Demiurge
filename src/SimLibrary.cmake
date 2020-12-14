@@ -11,14 +11,19 @@ set(AUTOMODE_HEADERS
 	# Behaviours
 	modules/AutoMoDeBehaviour.h
 	modules/AutoMoDeBehaviourAntiPhototaxis.h
+	modules/AutoMoDeBehaviourAntiPhototaxisCoconut.h
 	modules/AutoMoDeBehaviourPhototaxis.h
+	modules/AutoMoDeBehaviourPhototaxisCoconut.h
 	modules/AutoMoDeBehaviourAttraction.h
+	modules/AutoMoDeBehaviourAttractionCoconut.h
 	modules/AutoMoDeBehaviourAttractionTuttifrutti.h
 	modules/AutoMoDeBehaviourRepulsion.h
+	modules/AutoMoDeBehaviourRepulsionCoconut.h
 	modules/AutoMoDeBehaviourRepulsionTuttifrutti.h
 	modules/AutoMoDeBehaviourStop.h
 	modules/AutoMoDeBehaviourStopTuttifrutti.h
 	modules/AutoMoDeBehaviourExploration.h
+	modules/AutoMoDeBehaviourExplorationCoconut.h
 	modules/AutoMoDeBehaviourExplorationTuttifrutti.h
 	modules/AutoMoDeBehaviourGoAwayColorTuttifrutti.h
 	modules/AutoMoDeBehaviourGoToColorTuttifrutti.h
@@ -41,14 +46,19 @@ set(AUTOMODE_SOURCES
 	# Behaviours
 	modules/AutoMoDeBehaviour.cpp
 	modules/AutoMoDeBehaviourAntiPhototaxis.cpp
+	modules/AutoMoDeBehaviourAntiPhototaxisCoconut.cpp
 	modules/AutoMoDeBehaviourPhototaxis.cpp
+	modules/AutoMoDeBehaviourPhototaxisCoconut.cpp
 	modules/AutoMoDeBehaviourAttraction.cpp
+	modules/AutoMoDeBehaviourAttractionCoconut.cpp
 	modules/AutoMoDeBehaviourAttractionTuttifrutti.cpp
 	modules/AutoMoDeBehaviourRepulsion.cpp
+	modules/AutoMoDeBehaviourRepulsionCoconut.cpp
 	modules/AutoMoDeBehaviourRepulsionTuttifrutti.cpp
 	modules/AutoMoDeBehaviourStop.cpp
 	modules/AutoMoDeBehaviourStopTuttifrutti.cpp
 	modules/AutoMoDeBehaviourExploration.cpp
+	modules/AutoMoDeBehaviourExplorationCoconut.cpp
 	modules/AutoMoDeBehaviourExplorationTuttifrutti.cpp
 	modules/AutoMoDeBehaviourGoAwayColorTuttifrutti.cpp
 	modules/AutoMoDeBehaviourGoToColorTuttifrutti.cpp
