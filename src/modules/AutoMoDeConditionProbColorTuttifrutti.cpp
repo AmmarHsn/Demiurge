@@ -8,26 +8,26 @@
   * @license MIT License
   */
 
- #include "AutoMoDeConditionProbColor3Dot0.h"
+ #include "AutoMoDeConditionProbColorTuttifrutti.h"
 
  namespace argos {
 
   /****************************************/
   /****************************************/
 
-    AutoMoDeConditionProbColor3Dot0::AutoMoDeConditionProbColor3Dot0() {
+    AutoMoDeConditionProbColorTuttifrutti::AutoMoDeConditionProbColorTuttifrutti() {
         m_strLabel = "ProbColor";
 	}
 
   /****************************************/
   /****************************************/
 
-    AutoMoDeConditionProbColor3Dot0::~AutoMoDeConditionProbColor3Dot0() {}
+    AutoMoDeConditionProbColorTuttifrutti::~AutoMoDeConditionProbColorTuttifrutti() {}
 
   /****************************************/
   /****************************************/
 
-    AutoMoDeConditionProbColor3Dot0::AutoMoDeConditionProbColor3Dot0(AutoMoDeConditionProbColor3Dot0* pc_condition) {
+    AutoMoDeConditionProbColorTuttifrutti::AutoMoDeConditionProbColorTuttifrutti(AutoMoDeConditionProbColorTuttifrutti* pc_condition) {
 		m_strLabel = pc_condition->GetLabel();
 		m_unIndex = pc_condition->GetIndex();
 		m_unIdentifier = pc_condition->GetIndex();
@@ -40,7 +40,7 @@
   /****************************************/
   /****************************************/
 
-    void AutoMoDeConditionProbColor3Dot0::Init() {
+    void AutoMoDeConditionProbColorTuttifrutti::Init() {
         std::map<std::string, Real>::iterator it = m_mapParameters.find("l");
         if (it != m_mapParameters.end()) {
             m_cColorParameter = GetColorParameter(it->second);
@@ -60,14 +60,14 @@
   /****************************************/
   /****************************************/
 
-    AutoMoDeConditionProbColor3Dot0* AutoMoDeConditionProbColor3Dot0::Clone() {
-        return new AutoMoDeConditionProbColor3Dot0(this);
+    AutoMoDeConditionProbColorTuttifrutti* AutoMoDeConditionProbColorTuttifrutti::Clone() {
+        return new AutoMoDeConditionProbColorTuttifrutti(this);
 	}
 
   /****************************************/
   /****************************************/
 
-    bool AutoMoDeConditionProbColor3Dot0::Verify() {
+    bool AutoMoDeConditionProbColorTuttifrutti::Verify() {
         CCI_EPuckOmnidirectionalCameraSensor::SReadings sReadings = m_pcRobotDAO->GetCameraInput();
         CCI_EPuckOmnidirectionalCameraSensor::TBlobList::iterator it;
         bool bColorPerceived = false;
@@ -89,7 +89,7 @@
   /****************************************/
   /****************************************/
 
-    void AutoMoDeConditionProbColor3Dot0::Reset() {
+    void AutoMoDeConditionProbColorTuttifrutti::Reset() {
     Init();
   }
 

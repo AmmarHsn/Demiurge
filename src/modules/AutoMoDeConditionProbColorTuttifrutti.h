@@ -14,13 +14,13 @@
 #include "AutoMoDeCondition.h"
 
 namespace argos {
-    class AutoMoDeConditionProbColor3Dot0: public AutoMoDeCondition {
+    class AutoMoDeConditionProbColorTuttifrutti: public AutoMoDeCondition {
 		public:
-            AutoMoDeConditionProbColor3Dot0();
-            virtual ~AutoMoDeConditionProbColor3Dot0();
+            AutoMoDeConditionProbColorTuttifrutti();
+            virtual ~AutoMoDeConditionProbColorTuttifrutti();
 
-            AutoMoDeConditionProbColor3Dot0(AutoMoDeConditionProbColor3Dot0* pc_condition);
-            virtual AutoMoDeConditionProbColor3Dot0* Clone();
+            AutoMoDeConditionProbColorTuttifrutti(AutoMoDeConditionProbColorTuttifrutti* pc_condition);
+            virtual AutoMoDeConditionProbColorTuttifrutti* Clone();
 
 			virtual bool Verify();
 			virtual void Reset();

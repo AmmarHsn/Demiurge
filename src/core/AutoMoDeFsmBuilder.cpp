@@ -112,10 +112,10 @@ namespace argos {
 			case TUTTIFRUTTI:
 				switch(unBehaviourIdentifier) {
 					case 0:
-						cNewBehaviour = new AutoMoDeBehaviourExploration3Dot0();
+						cNewBehaviour = new AutoMoDeBehaviourExplorationTuttifrutti();
 						break;
 					case 1:
-						cNewBehaviour = new AutoMoDeBehaviourStop3Dot0();
+						cNewBehaviour = new AutoMoDeBehaviourStopTuttifrutti();
 						break;
 					case 2:
 						cNewBehaviour = new AutoMoDeBehaviourPhototaxis();
@@ -124,16 +124,16 @@ namespace argos {
 						cNewBehaviour = new AutoMoDeBehaviourAntiPhototaxis();
 						break;
 					case 4:
-						cNewBehaviour = new AutoMoDeBehaviourAttraction3Dot0();
+						cNewBehaviour = new AutoMoDeBehaviourAttractionTuttifrutti();
 						break;
 					case 5:
-						cNewBehaviour = new AutoMoDeBehaviourRepulsion3Dot0();
+						cNewBehaviour = new AutoMoDeBehaviourRepulsionTuttifrutti();
 						break;
 					case 8:
-						cNewBehaviour = new AutoMoDeBehaviourGoToColor3Dot0();
+						cNewBehaviour = new AutoMoDeBehaviourGoToColorTuttifrutti();
 						break;
 					case 9:
-						cNewBehaviour = new AutoMoDeBehaviourGoAwayColor3Dot0();
+						cNewBehaviour = new AutoMoDeBehaviourGoAwayColorTuttifrutti();
 						break;
 					
 				}
@@ -256,7 +256,7 @@ namespace argos {
 							cNewCondition = new AutoMoDeConditionFixedProbability();
 							break;
 						case 7:
-							cNewCondition = new AutoMoDeConditionProbColor3Dot0();
+							cNewCondition = new AutoMoDeConditionProbColorTuttifrutti();
 							break;
 					}
 					break;

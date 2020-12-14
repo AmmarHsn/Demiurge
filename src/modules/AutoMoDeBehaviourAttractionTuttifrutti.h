@@ -8,24 +8,24 @@
   * @license MIT License
   */
 
-#ifndef AUTOMODE_BEHAVIOUR_ATTRACTION_3DOT0_H
-#define AUTOMODE_BEHAVIOUR_ATTRACTION_3DOT0_H
+#ifndef AUTOMODE_BEHAVIOUR_ATTRACTION_TUTTIFRUTTI_H
+#define AUTOMODE_BEHAVIOUR_ATTRACTION_TUTTIFRUTTI_H
 
 #include "AutoMoDeBehaviour.h"
 
 namespace argos {
-	class AutoMoDeBehaviourAttraction3Dot0: public AutoMoDeBehaviour {
+	class AutoMoDeBehaviourAttractionTuttifrutti: public AutoMoDeBehaviour {
 		public:
-			AutoMoDeBehaviourAttraction3Dot0();
-			AutoMoDeBehaviourAttraction3Dot0(AutoMoDeBehaviourAttraction3Dot0* pc_behaviour);
-			virtual ~AutoMoDeBehaviourAttraction3Dot0();
+			AutoMoDeBehaviourAttractionTuttifrutti();
+			AutoMoDeBehaviourAttractionTuttifrutti(AutoMoDeBehaviourAttractionTuttifrutti* pc_behaviour);
+			virtual ~AutoMoDeBehaviourAttractionTuttifrutti();
 
 			virtual void ControlStep();
 			virtual void Reset();
 			virtual void ResumeStep();
 			virtual void Init();
 
-			virtual AutoMoDeBehaviourAttraction3Dot0* Clone();
+			virtual AutoMoDeBehaviourAttractionTuttifrutti* Clone();
 
 		private:
 			UInt8 m_unAttractionParameter;

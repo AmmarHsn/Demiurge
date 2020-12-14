@@ -14,18 +14,18 @@
 #include "AutoMoDeBehaviour.h"
 
 namespace argos {
-    class AutoMoDeBehaviourGoAwayColor3Dot0: public AutoMoDeBehaviour {
+    class AutoMoDeBehaviourGoAwayColorTuttifrutti: public AutoMoDeBehaviour {
 		public:
-            AutoMoDeBehaviourGoAwayColor3Dot0();
-            AutoMoDeBehaviourGoAwayColor3Dot0(AutoMoDeBehaviourGoAwayColor3Dot0* pc_behaviour);
-            virtual ~AutoMoDeBehaviourGoAwayColor3Dot0();
+            AutoMoDeBehaviourGoAwayColorTuttifrutti();
+            AutoMoDeBehaviourGoAwayColorTuttifrutti(AutoMoDeBehaviourGoAwayColorTuttifrutti* pc_behaviour);
+            virtual ~AutoMoDeBehaviourGoAwayColorTuttifrutti();
 
 			virtual void ControlStep();
 			virtual void Reset();
 			virtual void ResumeStep();
 			virtual void Init();
 
-            virtual AutoMoDeBehaviourGoAwayColor3Dot0* Clone();
+            virtual AutoMoDeBehaviourGoAwayColorTuttifrutti* Clone();
 
 		private:
             CColor m_cColorEmiterParameter;

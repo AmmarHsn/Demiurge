@@ -1,5 +1,5 @@
 /**
-  * @file <src/modules/AutoMoDeBehaviourStop3Dot0.cpp>
+  * @file <src/modules/AutoMoDeBehaviourStopTuttifrutti.cpp>
   *
   * @author Antoine Ligot - <aligot@ulb.ac.be>
   *
@@ -8,7 +8,7 @@
   * @license MIT License
   */
 
-#include "AutoMoDeBehaviourStop3Dot0.h"
+#include "AutoMoDeBehaviourStopTuttifrutti.h"
 
 namespace argos
 {
@@ -16,7 +16,7 @@ namespace argos
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourStop3Dot0::AutoMoDeBehaviourStop3Dot0()
+	AutoMoDeBehaviourStopTuttifrutti::AutoMoDeBehaviourStopTuttifrutti()
 	{
 		m_strLabel = "Stop";
 	}
@@ -24,7 +24,7 @@ namespace argos
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourStop3Dot0::AutoMoDeBehaviourStop3Dot0(AutoMoDeBehaviourStop3Dot0 *pc_behaviour)
+	AutoMoDeBehaviourStopTuttifrutti::AutoMoDeBehaviourStopTuttifrutti(AutoMoDeBehaviourStopTuttifrutti *pc_behaviour)
 	{
 		m_strLabel = pc_behaviour->GetLabel();
 		m_bLocked = pc_behaviour->IsLocked();
@@ -38,20 +38,20 @@ namespace argos
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourStop3Dot0::~AutoMoDeBehaviourStop3Dot0() {}
+	AutoMoDeBehaviourStopTuttifrutti::~AutoMoDeBehaviourStopTuttifrutti() {}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourStop3Dot0 *AutoMoDeBehaviourStop3Dot0::Clone()
+	AutoMoDeBehaviourStopTuttifrutti *AutoMoDeBehaviourStopTuttifrutti::Clone()
 	{
-		return new AutoMoDeBehaviourStop3Dot0(this);
+		return new AutoMoDeBehaviourStopTuttifrutti(this);
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourStop3Dot0::ControlStep()
+	void AutoMoDeBehaviourStopTuttifrutti::ControlStep()
 	{
 		m_pcRobotDAO->SetWheelsVelocity(0, 0);
 		m_pcRobotDAO->SetLEDsColor(m_cColorEmiterParameter);
@@ -61,7 +61,7 @@ namespace argos
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourStop3Dot0::Init()
+	void AutoMoDeBehaviourStopTuttifrutti::Init()
 	{
 		std::map<std::string, Real>::iterator it = m_mapParameters.find("cle");
 		if (it != m_mapParameters.end())
@@ -78,7 +78,7 @@ namespace argos
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourStop3Dot0::Reset()
+	void AutoMoDeBehaviourStopTuttifrutti::Reset()
 	{
 		m_bOperational = false;
 		ResumeStep();
@@ -87,7 +87,7 @@ namespace argos
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourStop3Dot0::ResumeStep()
+	void AutoMoDeBehaviourStopTuttifrutti::ResumeStep()
 	{
 		m_bOperational = true;
 	}

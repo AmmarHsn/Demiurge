@@ -8,7 +8,7 @@
   * @license MIT License
   */
 
-#include "AutoMoDeBehaviourExploration3Dot0.h"
+#include "AutoMoDeBehaviourExplorationTuttifrutti.h"
 
 
 namespace argos {
@@ -16,14 +16,14 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourExploration3Dot0::AutoMoDeBehaviourExploration3Dot0() {
+	AutoMoDeBehaviourExplorationTuttifrutti::AutoMoDeBehaviourExplorationTuttifrutti() {
 		m_strLabel = "Exploration";
 	}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourExploration3Dot0::AutoMoDeBehaviourExploration3Dot0(AutoMoDeBehaviourExploration3Dot0* pc_behaviour) {
+	AutoMoDeBehaviourExplorationTuttifrutti::AutoMoDeBehaviourExplorationTuttifrutti(AutoMoDeBehaviourExplorationTuttifrutti* pc_behaviour) {
 		m_strLabel = pc_behaviour->GetLabel();
 		m_bLocked = pc_behaviour->IsLocked();
 		m_bOperational = pc_behaviour->IsOperational();
@@ -36,19 +36,19 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourExploration3Dot0::~AutoMoDeBehaviourExploration3Dot0() {}
+	AutoMoDeBehaviourExplorationTuttifrutti::~AutoMoDeBehaviourExplorationTuttifrutti() {}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourExploration3Dot0* AutoMoDeBehaviourExploration3Dot0::Clone() {
-		return new AutoMoDeBehaviourExploration3Dot0(this);
+	AutoMoDeBehaviourExplorationTuttifrutti* AutoMoDeBehaviourExplorationTuttifrutti::Clone() {
+		return new AutoMoDeBehaviourExplorationTuttifrutti(this);
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourExploration3Dot0::Init() {
+	void AutoMoDeBehaviourExplorationTuttifrutti::Init() {
 		m_unTurnSteps = 0;
 		m_eExplorationState = RANDOM_WALK;
 		m_fProximityThreshold = 0.1;
@@ -72,7 +72,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourExploration3Dot0::ControlStep() {
+	void AutoMoDeBehaviourExplorationTuttifrutti::ControlStep() {
 		switch (m_eExplorationState) {
 			case RANDOM_WALK: {
 				m_pcRobotDAO->SetWheelsVelocity(m_pcRobotDAO->GetMaxVelocity(), m_pcRobotDAO->GetMaxVelocity());
@@ -113,7 +113,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourExploration3Dot0::Reset() {
+	void AutoMoDeBehaviourExplorationTuttifrutti::Reset() {
 		m_bOperational = false;
 		Init();
 		ResumeStep();
@@ -122,14 +122,14 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourExploration3Dot0::ResumeStep() {
+	void AutoMoDeBehaviourExplorationTuttifrutti::ResumeStep() {
 		m_bOperational = true;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	bool AutoMoDeBehaviourExploration3Dot0::IsObstacleInFront(CCI_EPuckProximitySensor::SReading s_prox_reading) {
+	bool AutoMoDeBehaviourExplorationTuttifrutti::IsObstacleInFront(CCI_EPuckProximitySensor::SReading s_prox_reading) {
 		CRadians cAngle = s_prox_reading.Angle;
 		if (s_prox_reading.Value >= m_fProximityThreshold && ((cAngle <= CRadians::PI_OVER_TWO) && (cAngle >= -CRadians::PI_OVER_TWO))) {
 			return true;

@@ -13,15 +13,15 @@ set(AUTOMODE_HEADERS
 	modules/AutoMoDeBehaviourAntiPhototaxis.h
 	modules/AutoMoDeBehaviourPhototaxis.h
 	modules/AutoMoDeBehaviourAttraction.h
-	modules/AutoMoDeBehaviourAttraction3Dot0.h
+	modules/AutoMoDeBehaviourAttractionTuttifrutti.h
 	modules/AutoMoDeBehaviourRepulsion.h
-	modules/AutoMoDeBehaviourRepulsion3Dot0.h
+	modules/AutoMoDeBehaviourRepulsionTuttifrutti.h
 	modules/AutoMoDeBehaviourStop.h
-	modules/AutoMoDeBehaviourStop3Dot0.h
+	modules/AutoMoDeBehaviourStopTuttifrutti.h
 	modules/AutoMoDeBehaviourExploration.h
-	modules/AutoMoDeBehaviourExploration3Dot0.h
-	modules/AutoMoDeBehaviourGoAwayColor3Dot0.h
-	modules/AutoMoDeBehaviourGoToColor3Dot0.h
+	modules/AutoMoDeBehaviourExplorationTuttifrutti.h
+	modules/AutoMoDeBehaviourGoAwayColorTuttifrutti.h
+	modules/AutoMoDeBehaviourGoToColorTuttifrutti.h
 	# Conditions
 	modules/AutoMoDeCondition.h
 	modules/AutoMoDeConditionBlackFloor.h
@@ -30,7 +30,7 @@ set(AUTOMODE_HEADERS
 	modules/AutoMoDeConditionNeighborsCount.h
 	modules/AutoMoDeConditionInvertedNeighborsCount.h
 	modules/AutoMoDeConditionFixedProbability.h
-	modules/AutoMoDeConditionProbColor3Dot0.h)
+	modules/AutoMoDeConditionProbColorTuttifrutti.h)
 
 # Sources
 set(AUTOMODE_SOURCES
@@ -43,15 +43,15 @@ set(AUTOMODE_SOURCES
 	modules/AutoMoDeBehaviourAntiPhototaxis.cpp
 	modules/AutoMoDeBehaviourPhototaxis.cpp
 	modules/AutoMoDeBehaviourAttraction.cpp
-	modules/AutoMoDeBehaviourAttraction3Dot0.cpp
+	modules/AutoMoDeBehaviourAttractionTuttifrutti.cpp
 	modules/AutoMoDeBehaviourRepulsion.cpp
-	modules/AutoMoDeBehaviourRepulsion3Dot0.cpp
+	modules/AutoMoDeBehaviourRepulsionTuttifrutti.cpp
 	modules/AutoMoDeBehaviourStop.cpp
-	modules/AutoMoDeBehaviourStop3Dot0.cpp
+	modules/AutoMoDeBehaviourStopTuttifrutti.cpp
 	modules/AutoMoDeBehaviourExploration.cpp
-	modules/AutoMoDeBehaviourExploration3Dot0.cpp
-	modules/AutoMoDeBehaviourGoAwayColor3Dot0.cpp
-	modules/AutoMoDeBehaviourGoToColor3Dot0.cpp
+	modules/AutoMoDeBehaviourExplorationTuttifrutti.cpp
+	modules/AutoMoDeBehaviourGoAwayColorTuttifrutti.cpp
+	modules/AutoMoDeBehaviourGoToColorTuttifrutti.cpp
 	# Conditions
 	modules/AutoMoDeCondition.cpp
 	modules/AutoMoDeConditionBlackFloor.cpp
@@ -60,7 +60,7 @@ set(AUTOMODE_SOURCES
 	modules/AutoMoDeConditionNeighborsCount.cpp
 	modules/AutoMoDeConditionInvertedNeighborsCount.cpp
 	modules/AutoMoDeConditionFixedProbability.cpp
-	modules/AutoMoDeConditionProbColor3Dot0.cpp)
+	modules/AutoMoDeConditionProbColorTuttifrutti.cpp)
 
 add_executable(automode ${AUTOMODE_HEADERS} ${AUTOMODE_SOURCES})
 target_link_libraries(automode argos3plugin_${ARGOS_BUILD_FOR}_epuck)

@@ -1,5 +1,5 @@
 /**
-  * @file <src/modules/AutoMoDeBehaviourRepulsion.cpp>
+  * @file <src/modules/AutoMoDeBehaviourAttractionColor.cpp>
   *
   * @author Antoine Ligot - <aligot@ulb.ac.be>
   *
@@ -8,7 +8,7 @@
   * @license MIT License
   */
 
-#include "AutoMoDeBehaviourGoAwayColor3Dot0.h"
+#include "AutoMoDeBehaviourGoToColorTuttifrutti.h"
 
 
 namespace argos {
@@ -16,14 +16,14 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-    AutoMoDeBehaviourGoAwayColor3Dot0::AutoMoDeBehaviourGoAwayColor3Dot0() {
-        m_strLabel = "GoAwayColor";
+    AutoMoDeBehaviourGoToColorTuttifrutti::AutoMoDeBehaviourGoToColorTuttifrutti() {
+        m_strLabel = "GoToColor";
 	}
 
 	/****************************************/
 	/****************************************/
 
-    AutoMoDeBehaviourGoAwayColor3Dot0::AutoMoDeBehaviourGoAwayColor3Dot0(AutoMoDeBehaviourGoAwayColor3Dot0* pc_behaviour) {
+    AutoMoDeBehaviourGoToColorTuttifrutti::AutoMoDeBehaviourGoToColorTuttifrutti(AutoMoDeBehaviourGoToColorTuttifrutti* pc_behaviour) {
 		m_strLabel = pc_behaviour->GetLabel();
 		m_bLocked = pc_behaviour->IsLocked();
 		m_bOperational = pc_behaviour->IsOperational();
@@ -36,19 +36,19 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-    AutoMoDeBehaviourGoAwayColor3Dot0::~AutoMoDeBehaviourGoAwayColor3Dot0() {}
+    AutoMoDeBehaviourGoToColorTuttifrutti::~AutoMoDeBehaviourGoToColorTuttifrutti() {}
 
 	/****************************************/
 	/****************************************/
 
-    AutoMoDeBehaviourGoAwayColor3Dot0* AutoMoDeBehaviourGoAwayColor3Dot0::Clone() {
-        return new AutoMoDeBehaviourGoAwayColor3Dot0(this);
+    AutoMoDeBehaviourGoToColorTuttifrutti* AutoMoDeBehaviourGoToColorTuttifrutti::Clone() {
+        return new AutoMoDeBehaviourGoToColorTuttifrutti(this);   // todo: check without *
 	}
 
 	/****************************************/
 	/****************************************/
 
-    void AutoMoDeBehaviourGoAwayColor3Dot0::ControlStep() {
+    void AutoMoDeBehaviourGoToColorTuttifrutti::ControlStep() {
         CCI_EPuckOmnidirectionalCameraSensor::SReadings sReadings = m_pcRobotDAO->GetCameraInput();
         CCI_EPuckOmnidirectionalCameraSensor::TBlobList::iterator it;
         CVector2 sColVectorSum(0,CRadians::ZERO);
@@ -56,17 +56,15 @@ namespace argos {
 		CVector2 sResultVector(0,CRadians::ZERO);
 
         for (it = sReadings.BlobList.begin(); it != sReadings.BlobList.end(); it++) {
-            if ((*it)->Color == m_cColorReceiverParameter  && (*it)->Distance >= 6.0) {
-                sColVectorSum += CVector2(1 / (((*it)->Distance) + 1), (*it)->Angle);
+            if ((*it)->Color == m_cColorReceiverParameter && (*it)->Distance >= 6.0) {
+                sColVectorSum += CVector2(1 / (((*it)->Distance)+1), (*it)->Angle);
             }
-		}
+            // TODO Check sColVectorSum function
+        }
 
         sProxVectorSum = CVector2(m_pcRobotDAO->GetProximityReading().Value, m_pcRobotDAO->GetProximityReading().Angle);
 
-        if (sColVectorSum.Length() != 0)
-            sResultVector = -CVector2(m_unRepulsionParameter, sColVectorSum.Angle().SignedNormalize()) - 5*sProxVectorSum;
-        else
-            sResultVector = CVector2(m_unRepulsionParameter, sColVectorSum.Angle().SignedNormalize()) - 5*sProxVectorSum;
+        sResultVector = CVector2(m_unAttractionParameter, sColVectorSum.Angle().SignedNormalize()) - 6*sProxVectorSum;
 
 		m_pcRobotDAO->SetWheelsVelocity(ComputeWheelsVelocityFromVector(sResultVector));
         m_pcRobotDAO->SetLEDsColor(m_cColorEmiterParameter);
@@ -77,10 +75,10 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-    void AutoMoDeBehaviourGoAwayColor3Dot0::Init() {
+    void AutoMoDeBehaviourGoToColorTuttifrutti::Init() {
         std::map<std::string, Real>::iterator it = m_mapParameters.find("vel");
 		if (it != m_mapParameters.end()) {
-			m_unRepulsionParameter = it->second;
+			m_unAttractionParameter = it->second;
 		} else {
 			LOGERR << "[FATAL] Missing parameter for the following behaviour:" << m_strLabel << std::endl;
 			THROW_ARGOSEXCEPTION("Missing Parameter");
@@ -104,7 +102,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-    void AutoMoDeBehaviourGoAwayColor3Dot0::Reset() {
+    void AutoMoDeBehaviourGoToColorTuttifrutti::Reset() {
 		m_bOperational = false;
 		ResumeStep();
 	}
@@ -112,7 +110,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-    void AutoMoDeBehaviourGoAwayColor3Dot0::ResumeStep() {
+    void AutoMoDeBehaviourGoToColorTuttifrutti::ResumeStep() {
 		m_bOperational = true;
 	}
 }

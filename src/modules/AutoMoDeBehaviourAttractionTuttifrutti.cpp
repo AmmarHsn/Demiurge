@@ -8,7 +8,7 @@
   * @license MIT License
   */
 
-#include "AutoMoDeBehaviourAttraction3Dot0.h"
+#include "AutoMoDeBehaviourAttractionTuttifrutti.h"
 
 
 namespace argos {
@@ -16,14 +16,14 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourAttraction3Dot0::AutoMoDeBehaviourAttraction3Dot0() {
+	AutoMoDeBehaviourAttractionTuttifrutti::AutoMoDeBehaviourAttractionTuttifrutti() {
 		m_strLabel = "Attraction";
 	}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourAttraction3Dot0::AutoMoDeBehaviourAttraction3Dot0(AutoMoDeBehaviourAttraction3Dot0* pc_behaviour) {
+	AutoMoDeBehaviourAttractionTuttifrutti::AutoMoDeBehaviourAttractionTuttifrutti(AutoMoDeBehaviourAttractionTuttifrutti* pc_behaviour) {
 		m_strLabel = pc_behaviour->GetLabel();
 		m_bLocked = pc_behaviour->IsLocked();
 		m_bOperational = pc_behaviour->IsOperational();
@@ -36,19 +36,19 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourAttraction3Dot0::~AutoMoDeBehaviourAttraction3Dot0() {}
+	AutoMoDeBehaviourAttractionTuttifrutti::~AutoMoDeBehaviourAttractionTuttifrutti() {}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourAttraction3Dot0* AutoMoDeBehaviourAttraction3Dot0::Clone() {
-		return new AutoMoDeBehaviourAttraction3Dot0(this);   // todo: check without *
+	AutoMoDeBehaviourAttractionTuttifrutti* AutoMoDeBehaviourAttractionTuttifrutti::Clone() {
+		return new AutoMoDeBehaviourAttractionTuttifrutti(this);   // todo: check without *
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourAttraction3Dot0::ControlStep() {
+	void AutoMoDeBehaviourAttractionTuttifrutti::ControlStep() {
 		CVector2 sRabVector(0,CRadians::ZERO);
 		CVector2 sProxVector(0,CRadians::ZERO);
 		CVector2 sResultVector(0,CRadians::ZERO);
@@ -74,7 +74,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourAttraction3Dot0::Init() {
+	void AutoMoDeBehaviourAttractionTuttifrutti::Init() {
 		std::map<std::string, Real>::iterator it = m_mapParameters.find("att");
 		if (it != m_mapParameters.end()) {
 			m_unAttractionParameter = it->second;
@@ -94,7 +94,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourAttraction3Dot0::Reset() {
+	void AutoMoDeBehaviourAttractionTuttifrutti::Reset() {
 		m_bOperational = false;
 		ResumeStep();
 	}
@@ -102,7 +102,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourAttraction3Dot0::ResumeStep() {
+	void AutoMoDeBehaviourAttractionTuttifrutti::ResumeStep() {
 		m_bOperational = true;
 	}
 }
