@@ -129,4 +129,15 @@ namespace argos
 
 	/****************************************/
 	/****************************************/
+
+	bool AutoMoDeBehaviourExplorationCoconut::Succeeded() {
+		return false;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	bool AutoMoDeBehaviourExplorationCoconut::Failed() {
+		return false; //(ObstacleInFront() || !LightPerceived());
+	}
 } // namespace argos

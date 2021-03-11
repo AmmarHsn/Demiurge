@@ -91,4 +91,18 @@ namespace argos
 	{
 		m_bOperational = true;
 	}
+
+	/****************************************/
+	/****************************************/
+
+	bool AutoMoDeBehaviourStopTuttifrutti::Succeeded() {
+		return false;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	bool AutoMoDeBehaviourStopTuttifrutti::Failed() {
+		return false; //(ObstacleInFront() || !LightPerceived());
+	}
 } // namespace argos

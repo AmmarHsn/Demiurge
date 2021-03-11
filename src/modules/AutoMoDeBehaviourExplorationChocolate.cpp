@@ -1,5 +1,5 @@
 /**
-  * @file <src/modules/AutoMoDeBehaviourExploration.cpp>
+  * @file <src/modules/AutoMoDeBehaviourExplorationChocolate.cpp>
   *
   * @author Antoine Ligot - <aligot@ulb.ac.be>
   *
@@ -8,7 +8,7 @@
   * @license MIT License
   */
 
-#include "AutoMoDeBehaviourExploration.h"
+#include "AutoMoDeBehaviourExplorationChocolate.h"
 
 
 namespace argos {
@@ -16,14 +16,14 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourExploration::AutoMoDeBehaviourExploration() {
+	AutoMoDeBehaviourExplorationChocolate::AutoMoDeBehaviourExplorationChocolate() {
 		m_strLabel = "Exploration";
 	}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourExploration::AutoMoDeBehaviourExploration(AutoMoDeBehaviourExploration* pc_behaviour) {
+	AutoMoDeBehaviourExplorationChocolate::AutoMoDeBehaviourExplorationChocolate(AutoMoDeBehaviourExplorationChocolate* pc_behaviour) {
 		m_strLabel = pc_behaviour->GetLabel();
 		m_bLocked = pc_behaviour->IsLocked();
 		m_bOperational = pc_behaviour->IsOperational();
@@ -36,19 +36,19 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourExploration::~AutoMoDeBehaviourExploration() {}
+	AutoMoDeBehaviourExplorationChocolate::~AutoMoDeBehaviourExplorationChocolate() {}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourExploration* AutoMoDeBehaviourExploration::Clone() {
-		return new AutoMoDeBehaviourExploration(this);
+	AutoMoDeBehaviourExplorationChocolate* AutoMoDeBehaviourExplorationChocolate::Clone() {
+		return new AutoMoDeBehaviourExplorationChocolate(this);
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourExploration::Init() {
+	void AutoMoDeBehaviourExplorationChocolate::Init() {
 		m_unTurnSteps = 0;
 		m_eExplorationState = RANDOM_WALK;
 		m_fProximityThreshold = 0.1;
@@ -65,7 +65,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourExploration::ControlStep() {
+	void AutoMoDeBehaviourExplorationChocolate::ControlStep() {
 		switch (m_eExplorationState) {
 			case RANDOM_WALK: {
 				m_pcRobotDAO->SetWheelsVelocity(m_pcRobotDAO->GetMaxVelocity(), m_pcRobotDAO->GetMaxVelocity());
@@ -105,7 +105,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourExploration::Reset() {
+	void AutoMoDeBehaviourExplorationChocolate::Reset() {
 		m_bOperational = false;
 		Init();
 		ResumeStep();
@@ -114,18 +114,32 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourExploration::ResumeStep() {
+	void AutoMoDeBehaviourExplorationChocolate::ResumeStep() {
 		m_bOperational = true;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	bool AutoMoDeBehaviourExploration::IsObstacleInFront(CCI_EPuckProximitySensor::SReading s_prox_reading) {
+	bool AutoMoDeBehaviourExplorationChocolate::IsObstacleInFront(CCI_EPuckProximitySensor::SReading s_prox_reading) {
 		CRadians cAngle = s_prox_reading.Angle;
 		if (s_prox_reading.Value >= m_fProximityThreshold && ((cAngle <= CRadians::PI_OVER_TWO) && (cAngle >= -CRadians::PI_OVER_TWO))) {
 			return true;
 		}
 		return false;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	bool AutoMoDeBehaviourExplorationChocolate::Succeeded() {
+		return false;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	bool AutoMoDeBehaviourExplorationChocolate::Failed() {
+		return false; //(ObstacleInFront() || !LightPerceived());
 	}
 }

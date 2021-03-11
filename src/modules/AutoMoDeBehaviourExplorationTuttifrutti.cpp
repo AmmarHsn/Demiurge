@@ -136,4 +136,18 @@ namespace argos {
 		}
 		return false;
 	}
+
+	/****************************************/
+	/****************************************/
+
+	bool AutoMoDeBehaviourExplorationTuttifrutti::Succeeded() {
+		return false;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	bool AutoMoDeBehaviourExplorationTuttifrutti::Failed() {
+		return false; //(ObstacleInFront() || !LightPerceived());
+	}
 }

@@ -1,0 +1,240 @@
+[
+	{
+		"categories" : 
+		[
+			{
+				"display_name" : "Gflr",
+				"id" : 11,
+				"name" : "Gray floor",
+				"params" : 
+				[
+					{
+						"id" : "p",
+						"max" : 1,
+						"min" : 0,
+						"name" : "Probability",
+						"step" : 0.01
+					}
+				]
+			},
+			{
+				"display_name" : "Wflr",
+				"id" : 12,
+				"name" : "White floor",
+				"params" : 
+				[
+					{
+						"id" : "p",
+						"max" : 1,
+						"min" : 0,
+						"name" : "Probability",
+						"step" : 0.01
+					}
+				]
+			},
+			{
+				"display_name" : "CPrb",
+				"id" : 27,
+				"name" : "Color probability",
+				"params" : 
+				[
+					{
+						"id" : "l",
+						"max" : 6,
+						"min" : 0,
+						"name" : "Light",
+						"step" : 1
+					},
+					{
+						"id" : "p",
+						"max" : 1,
+						"min" : 0,
+						"name" : "Probability",
+						"step" : 0.01
+					}
+				]
+			},
+			{
+				"display_name" : "Bflr",
+				"id" : 10,
+				"name" : "Black floor",
+				"params" : 
+				[
+					{
+						"id" : "p",
+						"max" : 1,
+						"min" : 0,
+						"name" : "Probability",
+						"step" : 0.01
+					}
+				]
+			},
+			{
+				"display_name" : "Ngb",
+				"id" : 13,
+				"name" : "Neighbors count",
+				"params" : 
+				[
+					{
+						"id" : "w",
+						"max" : 20,
+						"min" : 0,
+						"name" : "ξ",
+						"step" : 0.01
+					},
+					{
+						"id" : "n",
+						"max" : 10,
+						"min" : 1,
+						"name" : "ƞ",
+						"step" : 0.01
+					}
+				]
+			},
+			{
+				"display_name" : "INgb",
+				"id" : 14,
+				"name" : "Inverted neighbors count",
+				"params" : 
+				[
+					{
+						"id" : "w",
+						"max" : 20,
+						"min" : 0,
+						"name" : "ξ",
+						"step" : 0.01
+					},
+					{
+						"id" : "n",
+						"max" : 10,
+						"min" : 1,
+						"name" : "ƞ",
+						"step" : 0.01
+					}
+				]
+			},
+			{
+				"display_name" : "FPrb",
+				"id" : 15,
+				"name" : "Fixed Probability",
+				"params" : 
+				[
+					{
+						"id" : "p",
+						"max" : 1,
+						"min" : 0,
+						"name" : "Probability",
+						"step" : 0.01
+					}
+				]
+			},
+			{
+				"display_name" : "Bflr",
+				"id" : 30,
+				"name" : "Black floor",
+				"params" : 
+				[
+					{
+						"id" : "p",
+						"max" : 1,
+						"min" : 0,
+						"name" : "Probability",
+						"step" : 0.01
+					}
+				]
+			},
+			{
+				"display_name" : "Gflr",
+				"id" : 31,
+				"name" : "Gray floor",
+				"params" : 
+				[
+					{
+						"id" : "p",
+						"max" : 1,
+						"min" : 0,
+						"name" : "Probability",
+						"step" : 0.01
+					}
+				]
+			},
+			{
+				"display_name" : "Wflr",
+				"id" : 32,
+				"name" : "White floor",
+				"params" : 
+				[
+					{
+						"id" : "p",
+						"max" : 1,
+						"min" : 0,
+						"name" : "Probability",
+						"step" : 0.01
+					}
+				]
+			},
+			{
+				"display_name" : "Ngb",
+				"id" : 33,
+				"name" : "Neighbors count",
+				"params" : 
+				[
+					{
+						"id" : "w",
+						"max" : 20,
+						"min" : 0,
+						"name" : "ξ",
+						"step" : 0.01
+					},
+					{
+						"id" : "n",
+						"max" : 10,
+						"min" : 1,
+						"name" : "ƞ",
+						"step" : 0.01
+					}
+				]
+			},
+			{
+				"display_name" : "INgb",
+				"id" : 34,
+				"name" : "Inverted neighbors count",
+				"params" : 
+				[
+					{
+						"id" : "w",
+						"max" : 20,
+						"min" : 0,
+						"name" : "ξ",
+						"step" : 0.01
+					},
+					{
+						"id" : "n",
+						"max" : 10,
+						"min" : 1,
+						"name" : "ƞ",
+						"step" : 0.01
+					}
+				]
+			},
+			{
+				"display_name" : "FPrb",
+				"id" : 35,
+				"name" : "Fixed Probability",
+				"params" : 
+				[
+					{
+						"id" : "p",
+						"max" : 1,
+						"min" : 0,
+						"name" : "Probability",
+						"step" : 0.01
+					}
+				]
+			}
+		],
+		"categories_name" : "Condition",
+		"categoryid" : "c",
+		"typeid" : 0
+	}
+]

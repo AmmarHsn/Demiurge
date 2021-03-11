@@ -1,0 +1,331 @@
+[
+	{
+		"categories" : 
+		[
+			{
+				"display_name" : "Pha",
+				"id" : 32,
+				"name" : "Phototaxis",
+				"params" : 
+				[
+					{
+						"id" : "rwm",
+						"max" : 100,
+						"min" : 0,
+						"name" : "Steps Range",
+						"step" : 1
+					},
+					{
+						"id" : "exp",
+						"max" : 2,
+						"min" : 0,
+						"name" : "Exploration",
+						"step" : 1
+					},
+					{
+						"id" : "mu",
+						"max" : 3,
+						"min" : 1.01,
+						"name" : "Move Length",
+						"step" : 0.01
+					},
+					{
+						"id" : "rho",
+						"max" : 1,
+						"min" : 0,
+						"name" : "Turning Angle",
+						"step" : 0.01
+					}
+				]
+			},
+			{
+				"display_name" : "Gtc",
+				"id" : 28,
+				"name" : "Go to color",
+				"params" : 
+				[
+					{
+						"id" : "vel",
+						"max" : 1,
+						"min" : 0,
+						"name" : "Velocity",
+						"step" : 1
+					},
+					{
+						"id" : "cle",
+						"max" : 6,
+						"min" : 0,
+						"name" : "Color Emission",
+						"step" : 1
+					},
+					{
+						"id" : "clr",
+						"max" : 6,
+						"min" : 0,
+						"name" : "Color Reception",
+						"step" : 1
+					}
+				]
+			},
+			{
+				"display_name" : "Gac",
+				"id" : 29,
+				"name" : "Go away color",
+				"params" : 
+				[
+					{
+						"id" : "vel",
+						"max" : 1,
+						"min" : 0,
+						"name" : "Velocity",
+						"step" : 1
+					},
+					{
+						"id" : "cle",
+						"max" : 6,
+						"min" : 0,
+						"name" : "Color Emission",
+						"step" : 1
+					},
+					{
+						"id" : "clr",
+						"max" : 6,
+						"min" : 0,
+						"name" : "Color Reception",
+						"step" : 1
+					}
+				]
+			},
+			{
+				"display_name" : "Exp",
+				"id" : 10,
+				"name" : "Exploration",
+				"params" : 
+				[
+					{
+						"id" : "rwm",
+						"max" : 100,
+						"min" : 0,
+						"name" : "Steps Range",
+						"step" : 1
+					}
+				]
+			},
+			{
+				"display_name" : "Stop",
+				"id" : 11,
+				"name" : "Stop",
+				"params" : []
+			},
+			{
+				"display_name" : "Pha",
+				"id" : 12,
+				"name" : "Phototaxis",
+				"params" : []
+			},
+			{
+				"display_name" : "APha",
+				"id" : 13,
+				"name" : "Anti-phototaxis",
+				"params" : []
+			},
+			{
+				"display_name" : "Attr",
+				"id" : 14,
+				"name" : "Attraction",
+				"params" : 
+				[
+					{
+						"id" : "att",
+						"max" : 5,
+						"min" : 1,
+						"name" : "Attraction",
+						"step" : 1
+					}
+				]
+			},
+			{
+				"display_name" : "Rep",
+				"id" : 15,
+				"name" : "Repulsion",
+				"params" : 
+				[
+					{
+						"id" : "rep",
+						"max" : 5,
+						"min" : 1,
+						"name" : "Repulsion",
+						"step" : 1
+					}
+				]
+			},
+			{
+				"display_name" : "Exp",
+				"id" : 30,
+				"name" : "Exploration",
+				"params" : 
+				[
+					{
+						"id" : "rwm",
+						"max" : 100,
+						"min" : 0,
+						"name" : "Steps Range",
+						"step" : 1
+					},
+					{
+						"id" : "exp",
+						"max" : 2,
+						"min" : 0,
+						"name" : "Exploration",
+						"step" : 1
+					},
+					{
+						"id" : "mu",
+						"max" : 3,
+						"min" : 1.01,
+						"name" : "Move Length",
+						"step" : 0.01
+					},
+					{
+						"id" : "rho",
+						"max" : 1,
+						"min" : 0,
+						"name" : "Turning Angle",
+						"step" : 0.01
+					}
+				]
+			},
+			{
+				"display_name" : "Stop",
+				"id" : 31,
+				"name" : "Stop",
+				"params" : []
+			},
+			{
+				"display_name" : "APha",
+				"id" : 33,
+				"name" : "Anti-phototaxis",
+				"params" : 
+				[
+					{
+						"id" : "rwm",
+						"max" : 100,
+						"min" : 0,
+						"name" : "Steps Range",
+						"step" : 1
+					},
+					{
+						"id" : "exp",
+						"max" : 2,
+						"min" : 0,
+						"name" : "Exploration",
+						"step" : 1
+					},
+					{
+						"id" : "mu",
+						"max" : 3,
+						"min" : 1.01,
+						"name" : "Move Length",
+						"step" : 0.01
+					},
+					{
+						"id" : "rho",
+						"max" : 1,
+						"min" : 0,
+						"name" : "Turning Angle",
+						"step" : 0.01
+					}
+				]
+			},
+			{
+				"display_name" : "Attr",
+				"id" : 34,
+				"name" : "Attraction",
+				"params" : 
+				[
+					{
+						"id" : "rwm",
+						"max" : 100,
+						"min" : 0,
+						"name" : "Steps Range",
+						"step" : 1
+					},
+					{
+						"id" : "exp",
+						"max" : 2,
+						"min" : 0,
+						"name" : "Exploration",
+						"step" : 1
+					},
+					{
+						"id" : "mu",
+						"max" : 3,
+						"min" : 1.01,
+						"name" : "Move Length",
+						"step" : 0.01
+					},
+					{
+						"id" : "rho",
+						"max" : 1,
+						"min" : 0,
+						"name" : "Turning Angle",
+						"step" : 0.01
+					},
+					{
+						"id" : "att",
+						"max" : 5,
+						"min" : 1,
+						"name" : "Attraction",
+						"step" : 1
+					}
+				]
+			},
+			{
+				"display_name" : "Rep",
+				"id" : 35,
+				"name" : "Repulsion",
+				"params" : 
+				[
+					{
+						"id" : "rwm",
+						"max" : 100,
+						"min" : 0,
+						"name" : "Steps Range",
+						"step" : 1
+					},
+					{
+						"id" : "exp",
+						"max" : 2,
+						"min" : 0,
+						"name" : "Exploration",
+						"step" : 1
+					},
+					{
+						"id" : "mu",
+						"max" : 3,
+						"min" : 1.01,
+						"name" : "Move Length",
+						"step" : 0.01
+					},
+					{
+						"id" : "rho",
+						"max" : 1,
+						"min" : 0,
+						"name" : "Turning Angle",
+						"step" : 0.01
+					},
+					{
+						"id" : "rep",
+						"max" : 5,
+						"min" : 1,
+						"name" : "Repulsion",
+						"step" : 1
+					}
+				]
+			}
+		],
+		"categories_name" : "Behavior",
+		"categoryid" : "s",
+		"typeid" : 0
+	}
+]

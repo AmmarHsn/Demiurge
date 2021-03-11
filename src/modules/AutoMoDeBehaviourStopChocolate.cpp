@@ -1,5 +1,5 @@
 /**
-  * @file <src/modules/AutoMoDeBehaviourStop.cpp>
+  * @file <src/modules/AutoMoDeBehaviourStopChocolate.cpp>
   *
   * @author Antoine Ligot - <aligot@ulb.ac.be>
   *
@@ -8,7 +8,7 @@
   * @license MIT License
   */
 
-#include "AutoMoDeBehaviourStop.h"
+#include "AutoMoDeBehaviourStopChocolate.h"
 
 
 namespace argos {
@@ -16,14 +16,14 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourStop::AutoMoDeBehaviourStop() {
+	AutoMoDeBehaviourStopChocolate::AutoMoDeBehaviourStopChocolate() {
 		m_strLabel = "Stop";
 	}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourStop::AutoMoDeBehaviourStop(AutoMoDeBehaviourStop* pc_behaviour) {
+	AutoMoDeBehaviourStopChocolate::AutoMoDeBehaviourStopChocolate(AutoMoDeBehaviourStopChocolate* pc_behaviour) {
 		m_strLabel = pc_behaviour->GetLabel();
 		m_bLocked = pc_behaviour->IsLocked();
 		m_bOperational = pc_behaviour->IsOperational();
@@ -36,19 +36,19 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourStop::~AutoMoDeBehaviourStop() {}
+	AutoMoDeBehaviourStopChocolate::~AutoMoDeBehaviourStopChocolate() {}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourStop* AutoMoDeBehaviourStop::Clone() {
-		return new AutoMoDeBehaviourStop(this);
+	AutoMoDeBehaviourStopChocolate* AutoMoDeBehaviourStopChocolate::Clone() {
+		return new AutoMoDeBehaviourStopChocolate(this);
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourStop::ControlStep() {
+	void AutoMoDeBehaviourStopChocolate::ControlStep() {
 		m_pcRobotDAO->SetWheelsVelocity(0,0);
 		m_bLocked = false;
 	}
@@ -56,13 +56,13 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourStop::Init() {
+	void AutoMoDeBehaviourStopChocolate::Init() {
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourStop::Reset() {
+	void AutoMoDeBehaviourStopChocolate::Reset() {
 		m_bOperational = false;
 		ResumeStep();
 	}
@@ -70,7 +70,21 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourStop::ResumeStep() {
+	void AutoMoDeBehaviourStopChocolate::ResumeStep() {
 		m_bOperational = true;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	bool AutoMoDeBehaviourStopChocolate::Succeeded() {
+		return false;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	bool AutoMoDeBehaviourStopChocolate::Failed() {
+		return false; //(ObstacleInFront() || !LightPerceived());
 	}
 }

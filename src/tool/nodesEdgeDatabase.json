@@ -1,0 +1,281 @@
+[
+    {
+        "category": "behaviours",
+        "path": "/home/f403/Documents/AutoMoDe_vizualization_tool/automode-visualization-tool/config/fsm/nodeCategories.json",
+        "flavors": {
+            "chocolate": 1,
+            "tuttifrutti": 2,
+            "coconut": 3
+        },
+        "IDprefix": {
+            "1": ["Ch", "Chocolate"],
+            "2": ["Tu", "Tuttifrutti"],
+            "3": ["Co", "Coconut"]
+        },
+        "IDsuffix": {
+            "0": ["Exp", "Exploration"],
+            "1": ["Stop", "Stop"],
+            "2": ["Pha", "Phototaxis"],
+            "3": ["APha", "Anti-phototaxis"],
+            "4": ["Attr", "Attraction"],
+            "5": ["Rep", "Repulsion"],
+            "8": ["Gtc", "Go to color"],
+            "9": ["Gac", "Go away color"]
+        },
+        "params": {
+            "cle": {
+                "name": "Color Emission",
+                "min": 0,
+                "max": 6,
+                "step": 1
+            },
+            "clr": {
+                "name": "Color Reception",
+                "min": 0,
+                "max": 6,
+                "step": 1
+            },
+            "exp": {
+                "name": "Exploration",
+                "min": 0,
+                "max": 2,
+                "step": 1
+            },
+            "rwm": {
+                "name": "Steps Range",
+                "min": 0,
+                "max": 100,
+                "step": 1
+            },
+            "mu": {
+                "name": "Move Length",
+                "min": 1.01,
+                "max": 3,
+                "step": 0.01
+            },
+            "rho": {
+                "name": "Turning Angle",
+                "min": 0,
+                "max": 1,
+                "step": 0.01
+            },
+            "att": {
+                "name": "Attraction",
+                "min": 1,
+                "max": 5,
+                "step": 1
+            },
+            "rep": {
+                "name": "Repulsion",
+                "min": 1,
+                "max": 5,
+                "step": 1
+            },
+            "vel": {
+                "name": "Velocity",
+                "min": 0,
+                "max": 1,
+                "step": 1
+            }
+        },
+        "behaviours": [
+            {
+                "id": 10,
+                "params": ["rwm"]
+            },
+            {
+                "id": 11,
+                "params": []
+            },
+            {
+                "id": 12,
+                "params": []
+            },
+            {
+                "id": 13,
+                "params": []
+            },
+            {
+                "id": 14,
+                "params": ["att"]
+            },
+            {
+                "id": 15,
+                "params": ["rep"]
+            },
+            {
+                "id": 20,
+                "params": ["rwm", "cle"]
+            },
+            {
+                "id": 21,
+                "params": ["cle"]
+            },
+            {
+                "id": 22,
+                "params": []
+            },
+            {
+                "id": 23,
+                "params": []
+            },
+            {
+                "id": 24,
+                "params": ["att","cle"]
+            },
+            {
+                "id": 25,
+                "params": ["rep", "cle"]
+            },
+            {
+                "id": 28,
+                "params": ["vel", "cle", "clr"]
+            },
+            {
+                "id": 29,
+                "params": ["vel", "cle", "clr"]
+            },
+            {
+                "id": 30,
+                "params": ["rwm", "exp", "mu", "rho"]
+            },
+            {
+                "id": 31,
+                "params": []
+            },
+            {
+                "id": 32,
+                "params": ["rwm", "exp", "mu", "rho"]
+            },
+            {
+                "id": 33,
+                "params": ["rwm", "exp", "mu", "rho"]
+            },
+            {
+                "id": 34,
+                "params": ["rwm", "exp", "mu", "rho", "att"]
+            },
+            {
+                "id": 35,
+                "params": ["rwm", "exp", "mu", "rho", "rep"]
+            }
+        ]
+    },
+    {
+        "category": "conditions",
+        "path": "/home/f403/Documents/AutoMoDe_vizualization_tool/automode-visualization-tool/config/fsm/edgeCategories.json",
+        "IDsuffix": {
+            "0": ["Bflr", "Black floor"],
+            "1": ["Gflr", "Gray floor"],
+            "2": ["Wflr", "White floor"],
+            "3": ["Ngb", "Neighbors count"],
+            "4": ["INgb", "Inverted neighbors count"],
+            "5": ["FPrb", "Fixed Probability"],
+            "7": ["CPrb", "Color probability"]
+        },
+        "params": {
+            "p": {
+                "name": "Probability",
+                "min": 0,
+                "max": 1,
+                "step": 0.01
+            },
+            "n": {
+                "name": "ƞ",
+                "min": 1,
+                "max": 10,
+                "step": 0.01
+            },
+            "w": {
+                "name": "ξ",
+                "min": 0,
+                "max": 20,
+                "step": 0.01
+            },
+            "l": {
+                "name": "Light",
+                "min": 0,
+                "max": 6,
+                "step": 1
+            }
+        },
+        "conditions": [
+            {
+                "id": 10,
+                "params": ["p"]
+            },
+            {
+                "id": 11,
+                "params": ["p"]
+            },
+            {
+                "id": 12,
+                "params": ["p"]
+            },
+            {
+                "id": 13,
+                "params": ["w", "n"]
+            },
+            {
+                "id": 14,
+                "params": ["w", "n"]
+            },
+            {
+                "id": 15,
+                "params": ["p"]
+            },
+            {
+                "id": 20,
+                "params": ["p"]
+            },
+            {
+                "id": 21,
+                "params": ["p"]
+            },
+            {
+                "id": 22,
+                "params": ["p"]
+            },
+            {
+                "id": 23,
+                "params": ["w", "n"]
+            },
+            {
+                "id": 24,
+                "params": ["w", "n"]
+            },
+            {
+                "id": 25,
+                "params": ["p"]
+            },
+            {
+                "id": 27,
+                "params": ["l", "p"]
+            },
+            {
+                "id": 30,
+                "params": ["p"]
+            },
+            {
+                "id": 31,
+                "params": ["p"]
+            },
+            {
+                "id": 32,
+                "params": ["p"]
+            },
+            {
+                "id": 33,
+                "params": ["w", "n"]
+            },
+            {
+                "id": 34,
+                "params": ["w", "n"]
+            },
+            {
+                "id": 35,
+                "params": ["p"]
+            }
+        ]
+    }
+]

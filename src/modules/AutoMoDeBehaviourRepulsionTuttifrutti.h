@@ -27,6 +27,9 @@ namespace argos {
 
 			virtual AutoMoDeBehaviourRepulsionTuttifrutti* Clone();
 
+			virtual bool Succeeded();
+			virtual bool Failed();
+
 		private:
 			UInt8 m_unRepulsionParameter;
             CColor m_cColorEmiterParameter;

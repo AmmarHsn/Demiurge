@@ -44,8 +44,6 @@ namespace argos {
 
 		std::vector<std::string>::iterator it;
 		try {
-			it = std::find(vec_fsm_config.begin(), vec_fsm_config.end(), "--flavor");
-			m_flavor = atoi((*(it+1)).c_str());
 			it = std::find(vec_fsm_config.begin(), vec_fsm_config.end(), "--nstates");
 			m_unNumberStates = atoi((*(it+1)).c_str());
 			std::vector<std::string>::iterator first_state;
@@ -86,91 +84,65 @@ namespace argos {
 
 		// Creation of the Behaviour object
 		switch(unBehaviourIdentifier) {
-			case 0:
-				switch(m_flavor){
-					case CHOCOLATE:
-						cNewBehaviour = new AutoMoDeBehaviourExploration();
-						break;
-					case TUTTIFRUTTI:
-						cNewBehaviour = new AutoMoDeBehaviourExplorationTuttifrutti();
-						break;
-					case COCONUT:
-						cNewBehaviour = new AutoMoDeBehaviourExplorationCoconut();
-						break;
-				}
+			case 10:
+				cNewBehaviour = new AutoMoDeBehaviourExplorationChocolate();
 				break;
-			case 1:
-				switch(m_flavor){
-					case COCONUT:
-					case CHOCOLATE:
-						cNewBehaviour = new AutoMoDeBehaviourStop();
-						break;
-					case TUTTIFRUTTI:
-						cNewBehaviour = new AutoMoDeBehaviourStopTuttifrutti();
-						break;
-				}
+			case 11:
+				cNewBehaviour = new AutoMoDeBehaviourStopChocolate();
 				break;
-			case 2:
-				switch(m_flavor){
-					case CHOCOLATE:
-					case TUTTIFRUTTI:
-						cNewBehaviour = new AutoMoDeBehaviourPhototaxis();
-						break;
-					case COCONUT:
-						cNewBehaviour = new AutoMoDeBehaviourPhototaxisCoconut();
-						break;
-				}
+			case 12:
+				cNewBehaviour = new AutoMoDeBehaviourPhototaxisChocolate();
 				break;
-			case 3:
-				switch(m_flavor){
-					case CHOCOLATE:
-					case TUTTIFRUTTI:
-						cNewBehaviour = new AutoMoDeBehaviourAntiPhototaxis();
-						break;
-					case COCONUT:
-						cNewBehaviour = new AutoMoDeBehaviourAntiPhototaxisCoconut();
-						break;
-				}
+			case 13:
+				cNewBehaviour = new AutoMoDeBehaviourAntiPhototaxisChocolate();
 				break;
-			case 4:
-				switch(m_flavor){
-					case CHOCOLATE:
-						cNewBehaviour = new AutoMoDeBehaviourAttraction();
-						break;
-					case TUTTIFRUTTI:
-						cNewBehaviour = new AutoMoDeBehaviourAttractionTuttifrutti();
-						break;
-					case COCONUT:
-						cNewBehaviour = new AutoMoDeBehaviourAttractionCoconut();
-						break;
-				}
+			case 14:
+				cNewBehaviour = new AutoMoDeBehaviourAttractionChocolate();
 				break;
-			case 5:
-				switch(m_flavor){
-					case CHOCOLATE:
-						cNewBehaviour = new AutoMoDeBehaviourRepulsion();
-						break;
-					case TUTTIFRUTTI:
-						cNewBehaviour = new AutoMoDeBehaviourRepulsionTuttifrutti();
-						break;
-					case COCONUT:
-						cNewBehaviour = new AutoMoDeBehaviourRepulsionCoconut();
-						break;
-				}
+			case 15:
+				cNewBehaviour = new AutoMoDeBehaviourRepulsionChocolate();
 				break;
-			case 8:
-				switch(m_flavor){
-					case TUTTIFRUTTI:
-						cNewBehaviour = new AutoMoDeBehaviourGoToColorTuttifrutti();
-						break;
-				}
+			case 20:
+				cNewBehaviour = new AutoMoDeBehaviourExplorationTuttifrutti();
 				break;
-			case 9:
-				switch(m_flavor){
-					case TUTTIFRUTTI:
-						cNewBehaviour = new AutoMoDeBehaviourGoAwayColorTuttifrutti();
-						break;
-				}
+			case 21:
+				cNewBehaviour = new AutoMoDeBehaviourStopTuttifrutti();
+				break;
+			case 22:
+				cNewBehaviour = new AutoMoDeBehaviourPhototaxisChocolate();//TO DO: Remove photoaxis and antiphoto
+				break;
+			case 23:
+				cNewBehaviour = new AutoMoDeBehaviourAntiPhototaxisChocolate();
+				break;
+			case 24:
+				cNewBehaviour = new AutoMoDeBehaviourAttractionTuttifrutti();
+				break;
+			case 25:
+				cNewBehaviour = new AutoMoDeBehaviourRepulsionTuttifrutti();
+				break;
+			case 28:
+				cNewBehaviour = new AutoMoDeBehaviourGoToColorTuttifrutti();
+				break;
+			case 29:
+				cNewBehaviour = new AutoMoDeBehaviourGoAwayColorTuttifrutti();
+				break;
+			case 30:
+				cNewBehaviour = new AutoMoDeBehaviourExplorationCoconut();
+				break;
+			case 31:
+				cNewBehaviour = new AutoMoDeBehaviourStopChocolate();
+				break;
+			case 32:
+				cNewBehaviour = new AutoMoDeBehaviourPhototaxisCoconut();
+				break;
+			case 33:
+				cNewBehaviour = new AutoMoDeBehaviourAntiPhototaxisCoconut();
+				break;
+			case 34:
+				cNewBehaviour = new AutoMoDeBehaviourAttractionCoconut();
+				break;
+			case 35:
+				cNewBehaviour = new AutoMoDeBehaviourRepulsionCoconut();
 				break;
 		}
 		
@@ -247,30 +219,62 @@ namespace argos {
 			UInt8 unConditionIdentifier = atoi((*(it+1)).c_str());
 
 			switch(unConditionIdentifier) {
-				case 0:
+				case 10:
 					cNewCondition = new AutoMoDeConditionBlackFloor();
 					break;
-				case 1:
+				case 11:
 					cNewCondition = new AutoMoDeConditionGrayFloor();
 					break;
-				case 2:
+				case 12:
 					cNewCondition = new AutoMoDeConditionWhiteFloor();
 					break;
-				case 3:
+				case 13:
 					cNewCondition = new AutoMoDeConditionNeighborsCount();
 					break;
-				case 4:
+				case 14:
 					cNewCondition = new AutoMoDeConditionInvertedNeighborsCount();
 					break;
-				case 5:
+				case 15:
 					cNewCondition = new AutoMoDeConditionFixedProbability();
 					break;
-				case 7:
-					switch(m_flavor){
-						case TUTTIFRUTTI:
-							cNewCondition = new AutoMoDeConditionProbColorTuttifrutti();
-							break;
-					}
+				case 20:
+					cNewCondition = new AutoMoDeConditionBlackFloor();
+					break;
+				case 21:
+					cNewCondition = new AutoMoDeConditionGrayFloor();
+					break;
+				case 22:
+					cNewCondition = new AutoMoDeConditionWhiteFloor();
+					break;
+				case 23:
+					cNewCondition = new AutoMoDeConditionNeighborsCount();
+					break;
+				case 24:
+					cNewCondition = new AutoMoDeConditionInvertedNeighborsCount();
+					break;
+				case 25:
+					cNewCondition = new AutoMoDeConditionFixedProbability();
+					break;
+				case 27:
+					cNewCondition = new AutoMoDeConditionProbColorTuttifrutti();
+					break;
+				case 30:
+					cNewCondition = new AutoMoDeConditionBlackFloor();
+					break;
+				case 31:
+					cNewCondition = new AutoMoDeConditionGrayFloor();
+					break;
+				case 32:
+					cNewCondition = new AutoMoDeConditionWhiteFloor();
+					break;
+				case 33:
+					cNewCondition = new AutoMoDeConditionNeighborsCount();
+					break;
+				case 34:
+					cNewCondition = new AutoMoDeConditionInvertedNeighborsCount();
+					break;
+				case 35:
+					cNewCondition = new AutoMoDeConditionFixedProbability();
 					break;
 			}
 
@@ -280,7 +284,7 @@ namespace argos {
 
 
 			// Checking for parameters
-			std::string vecPossibleParameters[] = {"p", "w", "l"};
+			std::string vecPossibleParameters[] = {"p", "w", "l", "n"};
 			UInt8 unNumberPossibleParameters = sizeof(vecPossibleParameters) / sizeof(vecPossibleParameters[0]);
 			for (UInt8 i = 0; i < unNumberPossibleParameters; i++) {
 				std::string strCurrentParameter = vecPossibleParameters[i];

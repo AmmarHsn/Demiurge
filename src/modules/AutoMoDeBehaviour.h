@@ -76,6 +76,9 @@ namespace argos
 		Real rho;
 		CRange<UInt32> m_cRandomStepsRange;
 
+		Real m_fSuccessProbabilityParameter;
+
+
 	public:
 		virtual ~AutoMoDeBehaviour();
 		/*
@@ -191,6 +194,41 @@ namespace argos
 		CVector2 GetHeadingVector(CVector2 sCustomVector, UInt32 m_proxyFactor);
 
 		bool IsObstacleInFront(CCI_EPuckProximitySensor::SReading s_prox_reading);
+
+		/*****************/
+		/* Behavior Tree */
+		/*****************/
+
+		/*
+		* BT function: checks if behavior is in SUCCESS state.
+		*/
+		//virtual bool Succeeded() = 0;
+
+		/*
+		* BT function: checks if behavior is in FAILURE state.
+		*/
+		//virtual bool Failed() = 0;
+
+		bool LightPerceived();
+
+		bool EvaluateBernoulliProbability(const Real& f_probability) const;
+
+		Real GetSuccessProbability() const;
+
+		/* Debug functions */
+
+		UInt32 LogRobotIdientifier() {
+			return m_pcRobotDAO->GetRobotIdentifier();
+		};
+		/*
+		* BT function: checks if behavior is in SUCCESS state.
+		*/
+		virtual bool Succeeded() = 0;
+
+		/*
+		* BT function: checks if behavior is in FAILURE state.
+		*/
+		virtual bool Failed() = 0;
 	};
 } // namespace argos
 

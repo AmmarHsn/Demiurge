@@ -28,6 +28,9 @@ namespace argos
 		virtual void Init();
 
 		virtual AutoMoDeBehaviourPhototaxisCoconut *Clone();
+
+		virtual bool Succeeded();
+		virtual bool Failed();
 	};
 } // namespace argos
 

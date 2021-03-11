@@ -27,6 +27,9 @@ namespace argos {
 
             virtual AutoMoDeBehaviourGoToColorTuttifrutti* Clone();
 
+            virtual bool Succeeded();
+			      virtual bool Failed();
+
         private:
             Real m_fDistanceWeightParameter;
             CColor m_cColorEmiterParameter;

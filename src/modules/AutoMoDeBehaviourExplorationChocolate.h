@@ -1,5 +1,5 @@
 /**
-  * @file <src/modules/AutoMoDeBehaviourExploration.h>
+  * @file <src/modules/AutoMoDeBehaviourExplorationChocolate.h>
   *
   * @author Antoine Ligot - <aligot@ulb.ac.be>
   *
@@ -8,24 +8,27 @@
   * @license MIT License
   */
 
-#ifndef AUTOMODE_BEHAVIOUR_EXPLORATION_H
-#define AUTOMODE_BEHAVIOUR_EXPLORATION_H
+#ifndef AUTOMODE_BEHAVIOUR_EXPLORATION_CHOCOLATE_H
+#define AUTOMODE_BEHAVIOUR_EXPLORATION_CHOCOLATE_H
 
 #include "AutoMoDeBehaviour.h"
 
 namespace argos {
-	class AutoMoDeBehaviourExploration: public AutoMoDeBehaviour {
+	class AutoMoDeBehaviourExplorationChocolate: public AutoMoDeBehaviour {
 		public:
-			AutoMoDeBehaviourExploration();
-			AutoMoDeBehaviourExploration(AutoMoDeBehaviourExploration* pc_behaviour);
-			virtual ~AutoMoDeBehaviourExploration();
+			AutoMoDeBehaviourExplorationChocolate();
+			AutoMoDeBehaviourExplorationChocolate(AutoMoDeBehaviourExplorationChocolate* pc_behaviour);
+			virtual ~AutoMoDeBehaviourExplorationChocolate();
 
 			virtual void ControlStep();
 			virtual void Reset();
 			virtual void ResumeStep();
 			virtual void Init();
 
-			virtual AutoMoDeBehaviourExploration* Clone();
+			virtual AutoMoDeBehaviourExplorationChocolate* Clone();
+
+			virtual bool Succeeded();
+			virtual bool Failed();
 
 		private:
 			SInt32 m_unTurnSteps;

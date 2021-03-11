@@ -1,5 +1,5 @@
 /**
-  * @file <src/modules/AutoMoDeBehaviourAntiPhototaxis.cpp>
+  * @file <src/modules/AutoMoDeBehaviourPhototaxisChocolate.cpp>
   *
   * @author Antoine Ligot - <aligot@ulb.ac.be>
   *
@@ -8,7 +8,7 @@
   * @license MIT License
   */
 
-#include "AutoMoDeBehaviourAntiPhototaxis.h"
+#include "AutoMoDeBehaviourPhototaxisChocolate.h"
 
 
 namespace argos {
@@ -16,14 +16,14 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourAntiPhototaxis::AutoMoDeBehaviourAntiPhototaxis() {
-		m_strLabel = "Anti-Phototaxis";
+	AutoMoDeBehaviourPhototaxisChocolate::AutoMoDeBehaviourPhototaxisChocolate() {
+		m_strLabel = "Phototaxis";
 	}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourAntiPhototaxis::AutoMoDeBehaviourAntiPhototaxis(AutoMoDeBehaviourAntiPhototaxis* pc_behaviour) {
+	AutoMoDeBehaviourPhototaxisChocolate::AutoMoDeBehaviourPhototaxisChocolate(AutoMoDeBehaviourPhototaxisChocolate* pc_behaviour) {
 		m_strLabel = pc_behaviour->GetLabel();
 		m_bLocked = pc_behaviour->IsLocked();
 		m_bOperational = pc_behaviour->IsOperational();
@@ -36,19 +36,19 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourAntiPhototaxis::~AutoMoDeBehaviourAntiPhototaxis() {}
+	AutoMoDeBehaviourPhototaxisChocolate::~AutoMoDeBehaviourPhototaxisChocolate() {}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourAntiPhototaxis* AutoMoDeBehaviourAntiPhototaxis::Clone() {
-		return new AutoMoDeBehaviourAntiPhototaxis(this);
+	AutoMoDeBehaviourPhototaxisChocolate* AutoMoDeBehaviourPhototaxisChocolate::Clone() {
+		return new AutoMoDeBehaviourPhototaxisChocolate(this);
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourAntiPhototaxis::ControlStep() {
+	void AutoMoDeBehaviourPhototaxisChocolate::ControlStep() {
 		CVector2 sResultVector(0,CRadians::ZERO);
 		CVector2 sLightVector(0,CRadians::ZERO);
 		CVector2 sProxVector(0,CRadians::ZERO);
@@ -57,12 +57,12 @@ namespace argos {
 		sLightVector = CVector2(cLightReading.Value, cLightReading.Angle);
 
 		sProxVector = CVector2(m_pcRobotDAO->GetProximityReading().Value, m_pcRobotDAO->GetProximityReading().Angle);
-		sResultVector = -sLightVector - 5*sProxVector;
+		sResultVector = sLightVector - 5*sProxVector;
 
 		if (sResultVector.Length() < 0.1) {
 			sResultVector = CVector2(1, CRadians::ZERO);
 		}
-
+		
 		m_pcRobotDAO->SetWheelsVelocity(ComputeWheelsVelocityFromVector(sResultVector));
 
 		m_bLocked = false;
@@ -71,12 +71,12 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourAntiPhototaxis::Init() {}
+	void AutoMoDeBehaviourPhototaxisChocolate::Init() {}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourAntiPhototaxis::Reset() {
+	void AutoMoDeBehaviourPhototaxisChocolate::Reset() {
 		m_bOperational = false;
 		ResumeStep();
 	}
@@ -84,7 +84,21 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourAntiPhototaxis::ResumeStep() {
+	void AutoMoDeBehaviourPhototaxisChocolate::ResumeStep() {
 		m_bOperational = true;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	bool AutoMoDeBehaviourPhototaxisChocolate::Succeeded() {
+		return false;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	bool AutoMoDeBehaviourPhototaxisChocolate::Failed() {
+		return false; //(ObstacleInFront() || !LightPerceived());
 	}
 }

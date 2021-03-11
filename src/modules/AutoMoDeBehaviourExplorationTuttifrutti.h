@@ -27,6 +27,9 @@ namespace argos {
 
 			virtual AutoMoDeBehaviourExplorationTuttifrutti* Clone();
 
+			virtual bool Succeeded();
+			virtual bool Failed();
+
 		private:
 			SInt32 m_unTurnSteps;
 

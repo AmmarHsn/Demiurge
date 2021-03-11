@@ -8,21 +8,32 @@ set(AUTOMODE_HEADERS
 	core/AutoMoDeFiniteStateMachine.h
 	core/AutoMoDeFsmBuilder.h
 	core/AutoMoDeFsmHistory.h
+	core/AutoMoDeBehaviorTree.h
+	core/AutoMoDeBehaviorTreeBuilder.h
+	core/AutoMoDeControllerBehaviorTree.h
+	core/bt/Action.h
+	core/bt/Condition.h
+	core/bt/NegationDecorator.h
+	core/bt/Node.h
+	core/bt/Selector.h
+	core/bt/SelectorStar.h
+	core/bt/Sequence.h
+	core/bt/SequenceStar.h
 	# Behaviours
 	modules/AutoMoDeBehaviour.h
-	modules/AutoMoDeBehaviourAntiPhototaxis.h
+	modules/AutoMoDeBehaviourAntiPhototaxisChocolate.h
 	modules/AutoMoDeBehaviourAntiPhototaxisCoconut.h
-	modules/AutoMoDeBehaviourPhototaxis.h
+	modules/AutoMoDeBehaviourPhototaxisChocolate.h
 	modules/AutoMoDeBehaviourPhototaxisCoconut.h
-	modules/AutoMoDeBehaviourAttraction.h
+	modules/AutoMoDeBehaviourAttractionChocolate.h
 	modules/AutoMoDeBehaviourAttractionCoconut.h
 	modules/AutoMoDeBehaviourAttractionTuttifrutti.h
-	modules/AutoMoDeBehaviourRepulsion.h
+	modules/AutoMoDeBehaviourRepulsionChocolate.h
 	modules/AutoMoDeBehaviourRepulsionCoconut.h
 	modules/AutoMoDeBehaviourRepulsionTuttifrutti.h
-	modules/AutoMoDeBehaviourStop.h
+	modules/AutoMoDeBehaviourStopChocolate.h
 	modules/AutoMoDeBehaviourStopTuttifrutti.h
-	modules/AutoMoDeBehaviourExploration.h
+	modules/AutoMoDeBehaviourExplorationChocolate.h
 	modules/AutoMoDeBehaviourExplorationCoconut.h
 	modules/AutoMoDeBehaviourExplorationTuttifrutti.h
 	modules/AutoMoDeBehaviourGoAwayColorTuttifrutti.h
@@ -43,21 +54,32 @@ set(AUTOMODE_SOURCES
 	core/AutoMoDeFiniteStateMachine.cpp
 	core/AutoMoDeFsmBuilder.cpp
 	core/AutoMoDeFsmHistory.cpp
+	core/AutoMoDeBehaviorTree.cpp
+	core/AutoMoDeBehaviorTreeBuilder.cpp
+	core/AutoMoDeControllerBehaviorTree.cpp
+	core/bt/Action.cpp
+	core/bt/Condition.cpp
+	core/bt/NegationDecorator.cpp
+	core/bt/Node.cpp
+	core/bt/Selector.cpp
+	core/bt/SelectorStar.cpp
+	core/bt/Sequence.cpp
+	core/bt/SequenceStar.cpp
 	# Behaviours
 	modules/AutoMoDeBehaviour.cpp
-	modules/AutoMoDeBehaviourAntiPhototaxis.cpp
+	modules/AutoMoDeBehaviourAntiPhototaxisChocolate.cpp
 	modules/AutoMoDeBehaviourAntiPhototaxisCoconut.cpp
-	modules/AutoMoDeBehaviourPhototaxis.cpp
+	modules/AutoMoDeBehaviourPhototaxisChocolate.cpp
 	modules/AutoMoDeBehaviourPhototaxisCoconut.cpp
-	modules/AutoMoDeBehaviourAttraction.cpp
+	modules/AutoMoDeBehaviourAttractionChocolate.cpp
 	modules/AutoMoDeBehaviourAttractionCoconut.cpp
 	modules/AutoMoDeBehaviourAttractionTuttifrutti.cpp
-	modules/AutoMoDeBehaviourRepulsion.cpp
+	modules/AutoMoDeBehaviourRepulsionChocolate.cpp
 	modules/AutoMoDeBehaviourRepulsionCoconut.cpp
 	modules/AutoMoDeBehaviourRepulsionTuttifrutti.cpp
-	modules/AutoMoDeBehaviourStop.cpp
+	modules/AutoMoDeBehaviourStopChocolate.cpp
 	modules/AutoMoDeBehaviourStopTuttifrutti.cpp
-	modules/AutoMoDeBehaviourExploration.cpp
+	modules/AutoMoDeBehaviourExplorationChocolate.cpp
 	modules/AutoMoDeBehaviourExplorationCoconut.cpp
 	modules/AutoMoDeBehaviourExplorationTuttifrutti.cpp
 	modules/AutoMoDeBehaviourGoAwayColorTuttifrutti.cpp

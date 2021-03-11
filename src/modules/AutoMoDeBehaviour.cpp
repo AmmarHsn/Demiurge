@@ -283,6 +283,9 @@ namespace argos
 		return sResultVector;
 	}
 
+	/****************************************/
+	/****************************************/
+
 	void AutoMoDeBehaviour::UpdateRandomTurn()
 	{
 		if (m_walkSteps <= 0)
@@ -310,6 +313,9 @@ namespace argos
 			m_walkSteps -= 1;
 		}
 	}
+
+	/****************************************/
+	/****************************************/
 
 	void AutoMoDeBehaviour::UpdateRandomWalk()
 	{
@@ -347,6 +353,9 @@ namespace argos
 		}
 	}
 
+	/****************************************/
+	/****************************************/
+
 	bool AutoMoDeBehaviour::IsObstacleInFront(CCI_EPuckProximitySensor::SReading s_prox_reading)
 	{
 		CRadians cAngle = s_prox_reading.Angle;
@@ -355,6 +364,27 @@ namespace argos
 			return true;
 		}
 		return false;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	bool AutoMoDeBehaviour::LightPerceived() {
+		return true;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	bool AutoMoDeBehaviour::EvaluateBernoulliProbability(const Real& f_probability) const {
+		return m_pcRobotDAO->GetRandomNumberGenerator()->Bernoulli(f_probability);
+	}
+
+	/****************************************/
+	/****************************************/
+
+	Real AutoMoDeBehaviour::GetSuccessProbability() const {
+		return m_fSuccessProbabilityParameter;
 	}
 
 } // namespace argos

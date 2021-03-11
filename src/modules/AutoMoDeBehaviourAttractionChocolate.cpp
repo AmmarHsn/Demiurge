@@ -1,5 +1,5 @@
 /**
-  * @file <src/modules/AutoMoDeBehaviourAttraction.cpp>
+  * @file <src/modules/AutoMoDeBehaviourAttractionChocolate.cpp>
   *
   * @author Antoine Ligot - <aligot@ulb.ac.be>
   *
@@ -8,7 +8,7 @@
   * @license MIT License
   */
 
-#include "AutoMoDeBehaviourAttraction.h"
+#include "AutoMoDeBehaviourAttractionChocolate.h"
 
 
 namespace argos {
@@ -16,14 +16,14 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourAttraction::AutoMoDeBehaviourAttraction() {
+	AutoMoDeBehaviourAttractionChocolate::AutoMoDeBehaviourAttractionChocolate() {
 		m_strLabel = "Attraction";
 	}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourAttraction::AutoMoDeBehaviourAttraction(AutoMoDeBehaviourAttraction* pc_behaviour) {
+	AutoMoDeBehaviourAttractionChocolate::AutoMoDeBehaviourAttractionChocolate(AutoMoDeBehaviourAttractionChocolate* pc_behaviour) {
 		m_strLabel = pc_behaviour->GetLabel();
 		m_bLocked = pc_behaviour->IsLocked();
 		m_bOperational = pc_behaviour->IsOperational();
@@ -36,19 +36,19 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourAttraction::~AutoMoDeBehaviourAttraction() {}
+	AutoMoDeBehaviourAttractionChocolate::~AutoMoDeBehaviourAttractionChocolate() {}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeBehaviourAttraction* AutoMoDeBehaviourAttraction::Clone() {
-		return new AutoMoDeBehaviourAttraction(this);   // todo: check without *
+	AutoMoDeBehaviourAttractionChocolate* AutoMoDeBehaviourAttractionChocolate::Clone() {
+		return new AutoMoDeBehaviourAttractionChocolate(this);   // todo: check without *
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourAttraction::ControlStep() {
+	void AutoMoDeBehaviourAttractionChocolate::ControlStep() {
 		CVector2 sRabVector(0,CRadians::ZERO);
 		CVector2 sProxVector(0,CRadians::ZERO);
 		CVector2 sResultVector(0,CRadians::ZERO);
@@ -73,7 +73,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourAttraction::Init() {
+	void AutoMoDeBehaviourAttractionChocolate::Init() {
 		std::map<std::string, Real>::iterator it = m_mapParameters.find("att");
 		if (it != m_mapParameters.end()) {
 			m_unAttractionParameter = it->second;
@@ -86,7 +86,7 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourAttraction::Reset() {
+	void AutoMoDeBehaviourAttractionChocolate::Reset() {
 		m_bOperational = false;
 		ResumeStep();
 	}
@@ -94,7 +94,21 @@ namespace argos {
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeBehaviourAttraction::ResumeStep() {
+	void AutoMoDeBehaviourAttractionChocolate::ResumeStep() {
 		m_bOperational = true;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	bool AutoMoDeBehaviourAttractionChocolate::Succeeded() {
+		return false;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	bool AutoMoDeBehaviourAttractionChocolate::Failed() {
+		return false; //(ObstacleInFront() || !LightPerceived());
 	}
 }

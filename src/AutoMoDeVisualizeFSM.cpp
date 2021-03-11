@@ -64,7 +64,7 @@ std::string EncodeURL(const std::string &value) {
 int main(int n_argc, char** ppch_argv) {
 
 
-	std::vector<std::string> vecConfigFsm;
+	/*std::vector<std::string> vecConfigFsm;
 	bool bFsmControllerFound = false;
 	bool bFsmFileFound = false;
 	std::string strFsmFile;
@@ -145,7 +145,7 @@ int main(int n_argc, char** ppch_argv) {
     LOGERR << ex.what() << std::endl;
     return 1;
   }
-
+	*/
 	/* Everything's ok, exit */
   return 0;
 }

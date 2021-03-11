@@ -105,4 +105,18 @@ namespace argos {
 	void AutoMoDeBehaviourAttractionTuttifrutti::ResumeStep() {
 		m_bOperational = true;
 	}
+
+	/****************************************/
+	/****************************************/
+
+	bool AutoMoDeBehaviourAttractionTuttifrutti::Succeeded() {
+		return false;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	bool AutoMoDeBehaviourAttractionTuttifrutti::Failed() {
+		return false; //(ObstacleInFront() || !LightPerceived());
+	}
 }

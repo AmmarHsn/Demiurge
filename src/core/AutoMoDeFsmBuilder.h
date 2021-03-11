@@ -26,9 +26,6 @@
 #include <iterator>
 #include <stdlib.h>
 
-#define CHOCOLATE 0
-#define TUTTIFRUTTI 1
-#define COCONUT 2
 
 namespace argos {
 	class AutoMoDeFsmBuilder {
@@ -78,7 +75,8 @@ namespace argos {
 
 			UInt32 m_unNumberStates;
 
-			UInt32 m_flavor;
+			bool isBT = false;
+			bool isFSM = false;
 
 			AutoMoDeFiniteStateMachine* cFiniteStateMachine;
 

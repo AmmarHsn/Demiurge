@@ -29,6 +29,9 @@ namespace argos
 
 		virtual AutoMoDeBehaviourRepulsionCoconut *Clone();
 
+		virtual bool Succeeded();
+		virtual bool Failed();
+
 	private:
 		UInt8 m_unRepulsionParameter;
 	};

@@ -136,4 +136,18 @@ namespace argos
 	{
 		m_bOperational = true;
 	}
+
+	/****************************************/
+	/****************************************/
+
+	bool AutoMoDeBehaviourAttractionCoconut::Succeeded() {
+		return false;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	bool AutoMoDeBehaviourAttractionCoconut::Failed() {
+		return false; //(ObstacleInFront() || !LightPerceived());
+	}
 } // namespace argos
