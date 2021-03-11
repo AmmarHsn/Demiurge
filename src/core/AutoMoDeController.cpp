@@ -19,10 +19,12 @@ namespace argos {
 		m_pcRobotState = new ReferenceModel3Dot0();
 		m_unTimeStep = 0;
 		m_strFsmConfiguration = "";
+		m_strBtConfiguration = "";
 		m_bMaintainHistory = false;
 		m_bPrintReadableFsm = false;
 		m_strHistoryFolder = "./";
 		m_bFiniteStateMachineGiven = false;
+		m_bBehaviorTreeGiven = false;
 	}
 
 	/****************************************/
@@ -33,6 +35,9 @@ namespace argos {
 		if (m_strFsmConfiguration.compare("") != 0) {
 			delete m_pcFsmBuilder;
 		}
+		else if(m_strBtConfiguration.compare("") != 0){
+			delete m_pcBehaviorTree;
+		}
 	}
 
 	/****************************************/
@@ -42,6 +47,7 @@ namespace argos {
 		// Parsing parameters
 		try {
 			GetNodeAttributeOrDefault(t_node, "fsm-config", m_strFsmConfiguration, m_strFsmConfiguration);
+			GetNodeAttributeOrDefault(t_node, "bt-config", m_strBtConfiguration, m_strBtConfiguration);
 			GetNodeAttributeOrDefault(t_node, "history", m_bMaintainHistory, m_bMaintainHistory);
 			GetNodeAttributeOrDefault(t_node, "hist-folder", m_strHistoryFolder, m_strHistoryFolder);
 			GetNodeAttributeOrDefault(t_node, "readable", m_bPrintReadableFsm, m_bPrintReadableFsm);
@@ -65,6 +71,17 @@ namespace argos {
 			if (m_bPrintReadableFsm) {
 				std::cout << "Finite State Machine description: " << std::endl;
 				std::cout << m_pcFiniteStateMachine->GetReadableFormat() << std::endl;
+			}
+		}else if (m_strBtConfiguration.compare("") != 0 && !m_bBehaviorTreeGiven) {
+			m_pcBtBuilder = new AutoMoDeBehaviorTreeBuilder();
+			SetBehaviorTree(m_pcBtBuilder->BuildBehaviorTree(m_strBtConfiguration));
+			if (m_bMaintainHistory) {
+				//m_pcFiniteStateMachine->SetHistoryFolder(m_strHistoryFolder);
+				//m_pcFiniteStateMachine->MaintainHistory();
+			}
+			if (m_bPrintReadableFsm) {
+				std::cout << "Behavior tree description: " << std::endl;
+				std::cout << m_pcBehaviorTree->GetReadableFormat() << std::endl;
 			}
 		} else {
 			LOGERR << "Warning: No finite state machine configuration found in .argos" << std::endl;
@@ -135,8 +152,10 @@ namespace argos {
 		/*
 		 * 2. Execute step of FSM
 		 */
-		m_pcFiniteStateMachine->ControlStep();
-
+		if(m_bFiniteStateMachineGiven)
+			m_pcFiniteStateMachine->ControlStep();
+		else if(m_bBehaviorTreeGiven)
+			m_pcBehaviorTree->ControlStep();
 		/*
 		 * 3. Update Actuators
 		 */
@@ -167,7 +186,11 @@ namespace argos {
 	/****************************************/
 
 	void AutoMoDeController::Reset() {
-		m_pcFiniteStateMachine->Reset();
+		if(m_bFiniteStateMachineGiven)
+			m_pcFiniteStateMachine->Reset();
+		else if(m_bBehaviorTreeGiven)
+			m_pcBehaviorTree->Reset();
+		
 		m_pcRobotState->Reset();
 		// Restart actuation.
 		InitializeActuation();
@@ -181,6 +204,16 @@ namespace argos {
 		m_pcFiniteStateMachine->SetRobotDAO(m_pcRobotState);
 		m_pcFiniteStateMachine->Init();
 		m_bFiniteStateMachineGiven = true;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	void AutoMoDeController::SetBehaviorTree(AutoMoDeBehaviorTree* pc_behavior_tree) {
+		m_pcBehaviorTree = pc_behavior_tree;
+		m_pcBehaviorTree->SetRobotDAO(m_pcRobotState);
+		m_pcBehaviorTree->Init();
+		m_bBehaviorTreeGiven = true;
 	}
 
 	/****************************************/

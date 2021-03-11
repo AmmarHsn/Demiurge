@@ -1,5 +1,5 @@
 /**
-  * @file <src/modules/AutoMoDeConditionNeighborsCount.cpp>
+  * @file <src/modules/AutoMoDeConditionInvertedNeighborsCountChocolate.cpp>
   *
   * @author Antoine Ligot - <aligot@ulb.ac.be>
   *
@@ -8,26 +8,26 @@
   * @license MIT License
   */
 
- #include "AutoMoDeConditionNeighborsCount.h"
+ #include "AutoMoDeConditionInvertedNeighborsCountChocolate.h"
 
  namespace argos {
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeConditionNeighborsCount::AutoMoDeConditionNeighborsCount() {
-		m_strLabel = "NeighborsCount";
+	AutoMoDeConditionInvertedNeighborsCountChocolate::AutoMoDeConditionInvertedNeighborsCountChocolate() {
+		m_strLabel = "InvertedNeighborsCount";
 	}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeConditionNeighborsCount::~AutoMoDeConditionNeighborsCount() {}
+	AutoMoDeConditionInvertedNeighborsCountChocolate::~AutoMoDeConditionInvertedNeighborsCountChocolate() {}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeConditionNeighborsCount::AutoMoDeConditionNeighborsCount(AutoMoDeConditionNeighborsCount* pc_condition) {
+	AutoMoDeConditionInvertedNeighborsCountChocolate::AutoMoDeConditionInvertedNeighborsCountChocolate(AutoMoDeConditionInvertedNeighborsCountChocolate* pc_condition) {
 		m_strLabel = pc_condition->GetLabel();
 		m_unIndex = pc_condition->GetIndex();
 		m_unIdentifier = pc_condition->GetIndex();
@@ -40,30 +40,30 @@
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeConditionNeighborsCount* AutoMoDeConditionNeighborsCount::Clone() {
-		return new AutoMoDeConditionNeighborsCount(this);
+	AutoMoDeConditionInvertedNeighborsCountChocolate* AutoMoDeConditionInvertedNeighborsCountChocolate::Clone() {
+		return new AutoMoDeConditionInvertedNeighborsCountChocolate(this);
 	}
 
 	/****************************************/
 	/****************************************/
 
-	bool AutoMoDeConditionNeighborsCount::Verify() {
+	bool AutoMoDeConditionInvertedNeighborsCountChocolate::Verify() {
 		UInt32 unNumberNeighbors = m_pcRobotDAO->GetNumberNeighbors();
-                Real fProbability = (1/(1 + exp(m_fParameterEta * ((int)m_unParameterXi - (int)unNumberNeighbors))));
+                Real fProbability = 1 - (1/(1 + exp(m_fParameterEta * ((int)m_unParameterXi - (int)unNumberNeighbors))));
 		return EvaluateBernoulliProbability(fProbability);
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeConditionNeighborsCount::Reset() {
+	void AutoMoDeConditionInvertedNeighborsCountChocolate::Reset() {
 
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeConditionNeighborsCount::Init() {
+	void AutoMoDeConditionInvertedNeighborsCountChocolate::Init() {
 		std::map<std::string, Real>::iterator itEta = m_mapParameters.find("w");
 		std::map<std::string, Real>::iterator itXi = m_mapParameters.find("n");
 		if ((itEta != m_mapParameters.end()) && (itXi != m_mapParameters.end())) {

@@ -8,26 +8,26 @@
   * @license MIT License
   */
 
- #include "AutoMoDeConditionWhiteFloor.h"
+ #include "AutoMoDeConditionWhiteFloorChocolate.h"
 
  namespace argos {
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeConditionWhiteFloor::AutoMoDeConditionWhiteFloor() {
+	AutoMoDeConditionWhiteFloorChocolate::AutoMoDeConditionWhiteFloorChocolate() {
 		m_strLabel = "WhiteFloor";
 	}
 
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeConditionWhiteFloor::~AutoMoDeConditionWhiteFloor() {}
+	AutoMoDeConditionWhiteFloorChocolate::~AutoMoDeConditionWhiteFloorChocolate() {}
 
 	/****************************************/
 	/****************************************/
 
-	bool AutoMoDeConditionWhiteFloor::Verify() {
+	bool AutoMoDeConditionWhiteFloorChocolate::Verify() {
     if (m_pcRobotDAO->GetGroundReading() >= m_fGroundThreshold) {
       return EvaluateBernoulliProbability(m_fProbability);
     }
@@ -39,7 +39,7 @@
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeConditionWhiteFloor::AutoMoDeConditionWhiteFloor(AutoMoDeConditionWhiteFloor* pc_condition) {
+	AutoMoDeConditionWhiteFloorChocolate::AutoMoDeConditionWhiteFloorChocolate(AutoMoDeConditionWhiteFloorChocolate* pc_condition) {
 		m_strLabel = pc_condition->GetLabel();
 		m_unIndex = pc_condition->GetIndex();
 		m_unIdentifier = pc_condition->GetIndex();
@@ -52,14 +52,14 @@
 	/****************************************/
 	/****************************************/
 
-	AutoMoDeConditionWhiteFloor* AutoMoDeConditionWhiteFloor::Clone() {
-		return new AutoMoDeConditionWhiteFloor(this);
+	AutoMoDeConditionWhiteFloorChocolate* AutoMoDeConditionWhiteFloorChocolate::Clone() {
+		return new AutoMoDeConditionWhiteFloorChocolate(this);
 	}
 
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeConditionWhiteFloor::Init() {
+	void AutoMoDeConditionWhiteFloorChocolate::Init() {
 		m_fGroundThreshold = 0.95;
 		std::map<std::string, Real>::iterator it = m_mapParameters.find("p");
 		if (it != m_mapParameters.end()) {
@@ -73,6 +73,6 @@
 	/****************************************/
 	/****************************************/
 
-	void AutoMoDeConditionWhiteFloor::Reset() {}
+	void AutoMoDeConditionWhiteFloorChocolate::Reset() {}
 
  }

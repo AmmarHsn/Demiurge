@@ -16,7 +16,7 @@ namespace argos {
 	/****************************************/
 
 	AutoMoDeControllerBehaviorTree::AutoMoDeControllerBehaviorTree() {
-		m_pcRobotState = new ReferenceModel1Dot2();
+		m_pcRobotState = new ReferenceModel3Dot0();
 		m_unTimeStep = 0;
 		m_strBtConfiguration = "";
 		m_bMaintainHistory = false;
@@ -65,7 +65,7 @@ namespace argos {
 				std::cout << m_pcBehaviorTree->GetReadableFormat() << std::endl;
 			}
 		} else {
-			LOGERR << "Warning: No behavior tree configuration found in .argos" << std::endl;
+			LOGERR << "Warning bt: No behavior tree configuration found in .argos" << std::endl;
 		}
 
 		/*

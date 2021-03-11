@@ -61,7 +61,7 @@ int main(int n_argc, char** ppch_argv) {
 
 		int nCurrentArgument = 1;
 		while(!bControllerFound && nCurrentArgument < n_argc) {
-			if(strcmp(ppch_argv[nCurrentArgument], "--fsm-config") == 0 || strcmp(ppch_argv[nCurrentArgument], "--bt-config")) {
+			if(strcmp(ppch_argv[nCurrentArgument], "--fsm-config") == 0) {
 				bControllerFound = true;
 				nCurrentArgument++;
 				while (nCurrentArgument < n_argc) {
@@ -70,6 +70,19 @@ int main(int n_argc, char** ppch_argv) {
 				}
 				// Do not take the FSM configuration into account in the standard command line parsing.
 				n_argc = n_argc - vecConfig.size() - 1;
+				isFSM = true;
+				isBT = false;
+			}else if(strcmp(ppch_argv[nCurrentArgument], "--bt-config")==0){
+				bControllerFound = true;
+				nCurrentArgument++;
+				while (nCurrentArgument < n_argc) {
+					vecConfig.push_back(std::string(ppch_argv[nCurrentArgument]));
+					nCurrentArgument++;
+				}
+				// Do not take the FSM configuration into account in the standard command line parsing.
+				n_argc = n_argc - vecConfig.size() - 1;
+				isBT = true;
+				isFSM = false;
 			}
 			nCurrentArgument++;
 		}
@@ -77,7 +90,7 @@ int main(int n_argc, char** ppch_argv) {
 			THROW_ARGOSEXCEPTION(ExplainParameters());
 		}
 
-		std::vector<std::string>::iterator it;
+		/*std::vector<std::string>::iterator it;
 
 		it = std::find(vecConfig.begin(), vecConfig.end(), "--fsm-config");
 		//s.find(bar) != std::string::npos
@@ -89,7 +102,7 @@ int main(int n_argc, char** ppch_argv) {
 			if(it != vecConfig.end()){
 				isBT = true;
 			}
-		}
+		}*/
 		/*
 		if(strcmp((*(it+1)).c_str(), "fsm") == 0){
 			isFSM = true;
@@ -163,7 +176,7 @@ int main(int n_argc, char** ppch_argv) {
 							cController.SetFiniteStateMachine(pcPersonalFsm);
 							cController.SetHistoryFlag(bHistory);
 						}else if(isBT){
-							AutoMoDeControllerBehaviorTree& cController = dynamic_cast<AutoMoDeControllerBehaviorTree&> (pcEntity->GetController());
+							AutoMoDeController& cController = dynamic_cast<AutoMoDeController&> (pcEntity->GetController());
 							cController.SetBehaviorTree(pcPersonalBt);
 						}
 						

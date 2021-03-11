@@ -1,5 +1,5 @@
 /**
-  * @file <src/modules/AutoMoDeConditionFixedProbability.cpp>
+  * @file <src/modules/AutoMoDeConditionFixedProbabilityChocolate.cpp>
   *
   * @author Antoine Ligot - <aligot@ulb.ac.be>
   *
@@ -8,26 +8,26 @@
   * @license MIT License
   */
 
- #include "AutoMoDeConditionFixedProbability.h"
+ #include "AutoMoDeConditionFixedProbabilityChocolate.h"
 
  namespace argos {
 
   /****************************************/
   /****************************************/
 
-	AutoMoDeConditionFixedProbability::AutoMoDeConditionFixedProbability() {
+	AutoMoDeConditionFixedProbabilityChocolate::AutoMoDeConditionFixedProbabilityChocolate() {
 		m_strLabel = "FixedProbability";
 	}
 
   /****************************************/
   /****************************************/
 
-	AutoMoDeConditionFixedProbability::~AutoMoDeConditionFixedProbability() {}
+	AutoMoDeConditionFixedProbabilityChocolate::~AutoMoDeConditionFixedProbabilityChocolate() {}
 
   /****************************************/
   /****************************************/
 
-	AutoMoDeConditionFixedProbability::AutoMoDeConditionFixedProbability(AutoMoDeConditionFixedProbability* pc_condition) {
+	AutoMoDeConditionFixedProbabilityChocolate::AutoMoDeConditionFixedProbabilityChocolate(AutoMoDeConditionFixedProbabilityChocolate* pc_condition) {
 		m_strLabel = pc_condition->GetLabel();
 		m_unIndex = pc_condition->GetIndex();
 		m_unIdentifier = pc_condition->GetIndex();
@@ -40,14 +40,14 @@
   /****************************************/
   /****************************************/
 
-	AutoMoDeConditionFixedProbability* AutoMoDeConditionFixedProbability::Clone() {
-		return new AutoMoDeConditionFixedProbability(this);
+	AutoMoDeConditionFixedProbabilityChocolate* AutoMoDeConditionFixedProbabilityChocolate::Clone() {
+		return new AutoMoDeConditionFixedProbabilityChocolate(this);
 	}
 
   /****************************************/
   /****************************************/
 
-	void AutoMoDeConditionFixedProbability::Init() {
+	void AutoMoDeConditionFixedProbabilityChocolate::Init() {
 		std::map<std::string, Real>::iterator it = m_mapParameters.find("p");
 		if (it != m_mapParameters.end()) {
 			m_fProbability = it->second;
@@ -60,14 +60,14 @@
   /****************************************/
   /****************************************/
 
-	bool AutoMoDeConditionFixedProbability::Verify() {
+	bool AutoMoDeConditionFixedProbabilityChocolate::Verify() {
 		return EvaluateBernoulliProbability(m_fProbability);
 	}
 
   /****************************************/
   /****************************************/
 
-	void AutoMoDeConditionFixedProbability::Reset() {
+	void AutoMoDeConditionFixedProbabilityChocolate::Reset() {
     Init();
   }
 

@@ -40,12 +40,12 @@ set(AUTOMODE_HEADERS
 	modules/AutoMoDeBehaviourGoToColorTuttifrutti.h
 	# Conditions
 	modules/AutoMoDeCondition.h
-	modules/AutoMoDeConditionBlackFloor.h
-	modules/AutoMoDeConditionWhiteFloor.h
-	modules/AutoMoDeConditionGrayFloor.h
-	modules/AutoMoDeConditionNeighborsCount.h
-	modules/AutoMoDeConditionInvertedNeighborsCount.h
-	modules/AutoMoDeConditionFixedProbability.h
+	modules/AutoMoDeConditionBlackFloorChocolate.h
+	modules/AutoMoDeConditionWhiteFloorChocolate.h
+	modules/AutoMoDeConditionGrayFloorChocolate.h
+	modules/AutoMoDeConditionNeighborsCountChocolate.h
+	modules/AutoMoDeConditionInvertedNeighborsCountChocolate.h
+	modules/AutoMoDeConditionFixedProbabilityChocolate.h
 	modules/AutoMoDeConditionProbColorTuttifrutti.h)
 
 # Sources
@@ -86,12 +86,12 @@ set(AUTOMODE_SOURCES
 	modules/AutoMoDeBehaviourGoToColorTuttifrutti.cpp
 	# Conditions
 	modules/AutoMoDeCondition.cpp
-	modules/AutoMoDeConditionBlackFloor.cpp
-	modules/AutoMoDeConditionWhiteFloor.cpp
-	modules/AutoMoDeConditionGrayFloor.cpp
-	modules/AutoMoDeConditionNeighborsCount.cpp
-	modules/AutoMoDeConditionInvertedNeighborsCount.cpp
-	modules/AutoMoDeConditionFixedProbability.cpp
+	modules/AutoMoDeConditionBlackFloorChocolate.cpp
+	modules/AutoMoDeConditionWhiteFloorChocolate.cpp
+	modules/AutoMoDeConditionGrayFloorChocolate.cpp
+	modules/AutoMoDeConditionNeighborsCountChocolate.cpp
+	modules/AutoMoDeConditionInvertedNeighborsCountChocolate.cpp
+	modules/AutoMoDeConditionFixedProbabilityChocolate.cpp
 	modules/AutoMoDeConditionProbColorTuttifrutti.cpp)
 
 

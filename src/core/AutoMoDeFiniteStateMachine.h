@@ -38,12 +38,12 @@
 #include "../modules/AutoMoDeBehaviourGoToColorTuttifrutti.h"
 #include "../modules/AutoMoDeBehaviourGoAwayColorTuttifrutti.h"
 #include "../modules/AutoMoDeCondition.h"
-#include "../modules/AutoMoDeConditionBlackFloor.h"
-#include "../modules/AutoMoDeConditionGrayFloor.h"
-#include "../modules/AutoMoDeConditionWhiteFloor.h"
-#include "../modules/AutoMoDeConditionFixedProbability.h"
-#include "../modules/AutoMoDeConditionNeighborsCount.h"
-#include "../modules/AutoMoDeConditionInvertedNeighborsCount.h"
+#include "../modules/AutoMoDeConditionBlackFloorChocolate.h"
+#include "../modules/AutoMoDeConditionGrayFloorChocolate.h"
+#include "../modules/AutoMoDeConditionWhiteFloorChocolate.h"
+#include "../modules/AutoMoDeConditionFixedProbabilityChocolate.h"
+#include "../modules/AutoMoDeConditionNeighborsCountChocolate.h"
+#include "../modules/AutoMoDeConditionInvertedNeighborsCountChocolate.h"
 #include "../modules/AutoMoDeConditionProbColorTuttifrutti.h"
 
 #include <string>

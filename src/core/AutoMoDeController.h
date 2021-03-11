@@ -21,6 +21,9 @@
 #include "./AutoMoDeFiniteStateMachine.h"
 #include "./AutoMoDeFsmBuilder.h"
 
+#include "./AutoMoDeBehaviorTree.h"
+#include "./AutoMoDeBehaviorTreeBuilder.h"
+
 #include <argos3/plugins/robots/e-puck/control_interface/ci_epuck_wheels_actuator.h>
 #include <argos3/plugins/robots/e-puck/control_interface/ci_epuck_range_and_bearing_sensor.h>
 #include <argos3/plugins/robots/e-puck/control_interface/ci_epuck_range_and_bearing_actuator.h>
@@ -68,6 +71,11 @@ namespace argos{
 			 */
 			void SetFiniteStateMachine(AutoMoDeFiniteStateMachine* pc_fine_state_machine);
 
+			/*
+			 * Setter for the AutoMoDeBehaviorTree.
+			 */
+			void SetBehaviorTree(AutoMoDeBehaviorTree* pc_behavior_tree);
+
 			void SetHistoryFlag(bool b_history_flag);
 
 		private:
@@ -83,6 +91,12 @@ namespace argos{
 			 * of the robot.
 			 */
 			AutoMoDeFiniteStateMachine* m_pcFiniteStateMachine;
+
+			/*
+			 * Pointer to the behavior tree object that represents the behaviour
+			 * of the robot.
+			 */
+			AutoMoDeBehaviorTree* m_pcBehaviorTree;
 
 			/*
 			 * Pointer to the object representing the state of the robot. This object is
@@ -106,6 +120,11 @@ namespace argos{
 			std::string m_strFsmConfiguration;
 
 			/*
+			 * String that contains the configuration of the behavior tree.
+			 */
+			std::string m_strBtConfiguration;
+
+			/*
 			 * Flag that tells whether an history is maintained or not.
 			 */
 			bool m_bMaintainHistory;
@@ -125,6 +144,11 @@ namespace argos{
 			 * Pointer to the object in charge of creating the AutoMoDeFiniteStateMachine.
 			 */
 			AutoMoDeFsmBuilder* m_pcFsmBuilder;
+
+			/*
+			 * Pointer to the object in charge of creating the AutoMoDeFiniteStateMachine.
+			 */
+			AutoMoDeBehaviorTreeBuilder* m_pcBtBuilder;
 
 			/*
 			 * Pointer to the robot wheels actuator.
@@ -167,6 +191,7 @@ namespace argos{
 			CCI_EPuckOmnidirectionalCameraSensor* m_pcCameraSensor;
 
 			bool m_bFiniteStateMachineGiven;
+			bool m_bBehaviorTreeGiven;
 	};
 }
 

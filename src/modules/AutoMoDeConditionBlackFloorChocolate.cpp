@@ -1,5 +1,5 @@
 /**
-  * @file <src/modules/AutoMoDeConditionBlackFloor.cpp>
+  * @file <src/modules/AutoMoDeConditionBlackFloorChocolate.cpp>
   *
   * @author Antoine Ligot - <aligot@ulb.ac.be>
   *
@@ -8,26 +8,26 @@
   * @license MIT License
   */
 
- #include "AutoMoDeConditionBlackFloor.h"
+ #include "AutoMoDeConditionBlackFloorChocolate.h"
 
  namespace argos {
 
   /****************************************/
   /****************************************/
 
-	AutoMoDeConditionBlackFloor::AutoMoDeConditionBlackFloor() {
+	AutoMoDeConditionBlackFloorChocolate::AutoMoDeConditionBlackFloorChocolate() {
 		m_strLabel = "BlackFloor";
 	}
 
   /****************************************/
   /****************************************/
 
-	AutoMoDeConditionBlackFloor::~AutoMoDeConditionBlackFloor() {}
+	AutoMoDeConditionBlackFloorChocolate::~AutoMoDeConditionBlackFloorChocolate() {}
 
   /****************************************/
   /****************************************/
 
-	AutoMoDeConditionBlackFloor::AutoMoDeConditionBlackFloor(AutoMoDeConditionBlackFloor* pc_condition) {
+	AutoMoDeConditionBlackFloorChocolate::AutoMoDeConditionBlackFloorChocolate(AutoMoDeConditionBlackFloorChocolate* pc_condition) {
 		m_strLabel = pc_condition->GetLabel();
 		m_unIndex = pc_condition->GetIndex();
 		m_unIdentifier = pc_condition->GetIndex();
@@ -40,7 +40,7 @@
   /****************************************/
   /****************************************/
 
-  void AutoMoDeConditionBlackFloor::Init() {
+  void AutoMoDeConditionBlackFloorChocolate::Init() {
     m_fGroundThreshold = 0.1;
 	  std::map<std::string, Real>::iterator it = m_mapParameters.find("p");
     if (it != m_mapParameters.end()) {
@@ -54,14 +54,14 @@
   /****************************************/
   /****************************************/
 
-	AutoMoDeConditionBlackFloor* AutoMoDeConditionBlackFloor::Clone() {
-		return new AutoMoDeConditionBlackFloor(this);
+	AutoMoDeConditionBlackFloorChocolate* AutoMoDeConditionBlackFloorChocolate::Clone() {
+		return new AutoMoDeConditionBlackFloorChocolate(this);
 	}
 
   /****************************************/
   /****************************************/
 
-	bool AutoMoDeConditionBlackFloor::Verify() {
+	bool AutoMoDeConditionBlackFloorChocolate::Verify() {
 		if (m_pcRobotDAO->GetGroundReading() <= m_fGroundThreshold) {
       return EvaluateBernoulliProbability(m_fProbability);
     }
@@ -73,7 +73,7 @@
   /****************************************/
   /****************************************/
 
-	void AutoMoDeConditionBlackFloor::Reset() {
+	void AutoMoDeConditionBlackFloorChocolate::Reset() {
     Init();
   }
 

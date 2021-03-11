@@ -1,5 +1,5 @@
 /**
-  * @file <src/modules/AutoMoDeConditionGrayFloor.cpp>
+  * @file <src/modules/AutoMoDeConditionGrayFloorChocolate.cpp>
   *
   * @author Antoine Ligot - <aligot@ulb.ac.be>
   *
@@ -8,26 +8,26 @@
   * @license MIT License
   */
 
- #include "AutoMoDeConditionGrayFloor.h"
+ #include "AutoMoDeConditionGrayFloorChocolate.h"
 
  namespace argos {
 
   /****************************************/
   /****************************************/
 
-	AutoMoDeConditionGrayFloor::AutoMoDeConditionGrayFloor() {
+	AutoMoDeConditionGrayFloorChocolate::AutoMoDeConditionGrayFloorChocolate() {
 		m_strLabel = "GrayFloor";
 	}
 
   /****************************************/
   /****************************************/
 
-	AutoMoDeConditionGrayFloor::~AutoMoDeConditionGrayFloor() {}
+	AutoMoDeConditionGrayFloorChocolate::~AutoMoDeConditionGrayFloorChocolate() {}
 
   /****************************************/
   /****************************************/
 
-	AutoMoDeConditionGrayFloor::AutoMoDeConditionGrayFloor(AutoMoDeConditionGrayFloor* pc_condition) {
+	AutoMoDeConditionGrayFloorChocolate::AutoMoDeConditionGrayFloorChocolate(AutoMoDeConditionGrayFloorChocolate* pc_condition) {
 		m_strLabel = pc_condition->GetLabel();
 		m_unIndex = pc_condition->GetIndex();
 		m_unIdentifier = pc_condition->GetIndex();
@@ -40,14 +40,14 @@
   /****************************************/
   /****************************************/
 
-	AutoMoDeConditionGrayFloor* AutoMoDeConditionGrayFloor::Clone() {
-		return new AutoMoDeConditionGrayFloor(this);
+	AutoMoDeConditionGrayFloorChocolate* AutoMoDeConditionGrayFloorChocolate::Clone() {
+		return new AutoMoDeConditionGrayFloorChocolate(this);
 	}
 
   /****************************************/
   /****************************************/
 
-	bool AutoMoDeConditionGrayFloor::Verify() {
+	bool AutoMoDeConditionGrayFloorChocolate::Verify() {
     if (m_fGroundThresholdRange.WithinMinBoundExcludedMaxBoundExcluded(m_pcRobotDAO->GetGroundReading())) {
       return EvaluateBernoulliProbability(m_fProbability);
     }
@@ -59,7 +59,7 @@
   /****************************************/
   /****************************************/
 
-	void AutoMoDeConditionGrayFloor::Init() {
+	void AutoMoDeConditionGrayFloorChocolate::Init() {
 		m_fGroundThresholdRange.Set(0.1, 0.95);
 		std::map<std::string, Real>::iterator it = m_mapParameters.find("p");
 		if (it != m_mapParameters.end()) {
@@ -73,6 +73,6 @@
   /****************************************/
   /****************************************/
 
-	void AutoMoDeConditionGrayFloor::Reset() {}
+	void AutoMoDeConditionGrayFloorChocolate::Reset() {}
 
  }

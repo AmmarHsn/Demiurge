@@ -170,7 +170,7 @@ namespace argos {
 		oss << *(vec_action_config.begin() + 1) << " ";
 
 		// Checking for parameters
-		std::string vecPossibleParameters[] = {"rwm", "att", "rep", "p", "r"};
+		std::string vecPossibleParameters[] = {"rwm", "att", "rep", "cle", "clr", "vel", "exp", "mu", "rho"};//{"rwm", "att", "rep", "p", "r"};
 		UInt8 unNumberPossibleParameters = sizeof(vecPossibleParameters) / sizeof(vecPossibleParameters[0]);
 		std::vector<std::string>::iterator it;
 		for (UInt8 i = 0; i < unNumberPossibleParameters; i++) {
@@ -262,22 +262,22 @@ namespace argos {
 
 		switch(unConditionIdentifier) {
 			case 40:
-				pcNewCondition = new AutoMoDeConditionBlackFloor();
+				pcNewCondition = new AutoMoDeConditionBlackFloorChocolate();
 				break;
 			case 41:
-				pcNewCondition = new AutoMoDeConditionGrayFloor();
+				pcNewCondition = new AutoMoDeConditionGrayFloorChocolate();
 				break;
 			case 42:
-				pcNewCondition = new AutoMoDeConditionWhiteFloor();
+				pcNewCondition = new AutoMoDeConditionWhiteFloorChocolate();
 				break;
 			case 43:
-				pcNewCondition = new AutoMoDeConditionNeighborsCount();
+				pcNewCondition = new AutoMoDeConditionNeighborsCountChocolate();
 				break;
 			case 44:
-				pcNewCondition = new AutoMoDeConditionInvertedNeighborsCount();
+				pcNewCondition = new AutoMoDeConditionInvertedNeighborsCountChocolate();
 				break;
 			case 45:
-				pcNewCondition = new AutoMoDeConditionFixedProbability();
+				pcNewCondition = new AutoMoDeConditionFixedProbabilityChocolate();
 				break;
 		}
 

@@ -109,7 +109,7 @@ namespace argos {
 				cNewBehaviour = new AutoMoDeBehaviourStopTuttifrutti();
 				break;
 			case 22:
-				cNewBehaviour = new AutoMoDeBehaviourPhototaxisChocolate();//TO DO: Remove photoaxis and antiphoto
+				cNewBehaviour = new AutoMoDeBehaviourPhototaxisChocolate();
 				break;
 			case 23:
 				cNewBehaviour = new AutoMoDeBehaviourAntiPhototaxisChocolate();
@@ -220,61 +220,61 @@ namespace argos {
 
 			switch(unConditionIdentifier) {
 				case 10:
-					cNewCondition = new AutoMoDeConditionBlackFloor();
+					cNewCondition = new AutoMoDeConditionBlackFloorChocolate();
 					break;
 				case 11:
-					cNewCondition = new AutoMoDeConditionGrayFloor();
+					cNewCondition = new AutoMoDeConditionGrayFloorChocolate();
 					break;
 				case 12:
-					cNewCondition = new AutoMoDeConditionWhiteFloor();
+					cNewCondition = new AutoMoDeConditionWhiteFloorChocolate();
 					break;
 				case 13:
-					cNewCondition = new AutoMoDeConditionNeighborsCount();
+					cNewCondition = new AutoMoDeConditionNeighborsCountChocolate();
 					break;
 				case 14:
-					cNewCondition = new AutoMoDeConditionInvertedNeighborsCount();
+					cNewCondition = new AutoMoDeConditionInvertedNeighborsCountChocolate();
 					break;
 				case 15:
-					cNewCondition = new AutoMoDeConditionFixedProbability();
+					cNewCondition = new AutoMoDeConditionFixedProbabilityChocolate();
 					break;
 				case 20:
-					cNewCondition = new AutoMoDeConditionBlackFloor();
+					cNewCondition = new AutoMoDeConditionBlackFloorChocolate();
 					break;
 				case 21:
-					cNewCondition = new AutoMoDeConditionGrayFloor();
+					cNewCondition = new AutoMoDeConditionGrayFloorChocolate();
 					break;
 				case 22:
-					cNewCondition = new AutoMoDeConditionWhiteFloor();
+					cNewCondition = new AutoMoDeConditionWhiteFloorChocolate();
 					break;
 				case 23:
-					cNewCondition = new AutoMoDeConditionNeighborsCount();
+					cNewCondition = new AutoMoDeConditionNeighborsCountChocolate();
 					break;
 				case 24:
-					cNewCondition = new AutoMoDeConditionInvertedNeighborsCount();
+					cNewCondition = new AutoMoDeConditionInvertedNeighborsCountChocolate();
 					break;
 				case 25:
-					cNewCondition = new AutoMoDeConditionFixedProbability();
+					cNewCondition = new AutoMoDeConditionFixedProbabilityChocolate();
 					break;
 				case 27:
 					cNewCondition = new AutoMoDeConditionProbColorTuttifrutti();
 					break;
 				case 30:
-					cNewCondition = new AutoMoDeConditionBlackFloor();
+					cNewCondition = new AutoMoDeConditionBlackFloorChocolate();
 					break;
 				case 31:
-					cNewCondition = new AutoMoDeConditionGrayFloor();
+					cNewCondition = new AutoMoDeConditionGrayFloorChocolate();
 					break;
 				case 32:
-					cNewCondition = new AutoMoDeConditionWhiteFloor();
+					cNewCondition = new AutoMoDeConditionWhiteFloorChocolate();
 					break;
 				case 33:
-					cNewCondition = new AutoMoDeConditionNeighborsCount();
+					cNewCondition = new AutoMoDeConditionNeighborsCountChocolate();
 					break;
 				case 34:
-					cNewCondition = new AutoMoDeConditionInvertedNeighborsCount();
+					cNewCondition = new AutoMoDeConditionInvertedNeighborsCountChocolate();
 					break;
 				case 35:
-					cNewCondition = new AutoMoDeConditionFixedProbability();
+					cNewCondition = new AutoMoDeConditionFixedProbabilityChocolate();
 					break;
 			}
 
