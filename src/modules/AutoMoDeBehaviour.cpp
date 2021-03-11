@@ -139,6 +139,14 @@ namespace argos
 	/****************************************/
 	/****************************************/
 
+	void AutoMoDeBehaviour::SetParameterPath(const std::string &f_value)
+	{
+		m_parameterPath = f_value;
+	}
+
+	/****************************************/
+	/****************************************/
+
 	const bool AutoMoDeBehaviour::IsOperational() const
 	{
 		return m_bOperational;
@@ -158,6 +166,14 @@ namespace argos
 	const std::map<std::string, Real> AutoMoDeBehaviour::GetParameters()
 	{
 		return m_mapParameters;
+	}
+
+	/****************************************/
+	/****************************************/
+
+	const std::string AutoMoDeBehaviour::GetParameterPath()
+	{
+		return m_parameterPath;
 	}
 
 	/****************************************/
@@ -369,21 +385,24 @@ namespace argos
 	/****************************************/
 	/****************************************/
 
-	bool AutoMoDeBehaviour::LightPerceived() {
+	bool AutoMoDeBehaviour::LightPerceived()
+	{
 		return true;
 	}
 
 	/****************************************/
 	/****************************************/
 
-	bool AutoMoDeBehaviour::EvaluateBernoulliProbability(const Real& f_probability) const {
+	bool AutoMoDeBehaviour::EvaluateBernoulliProbability(const Real &f_probability) const
+	{
 		return m_pcRobotDAO->GetRandomNumberGenerator()->Bernoulli(f_probability);
 	}
 
 	/****************************************/
 	/****************************************/
 
-	Real AutoMoDeBehaviour::GetSuccessProbability() const {
+	Real AutoMoDeBehaviour::GetSuccessProbability() const
+	{
 		return m_fSuccessProbabilityParameter;
 	}
 

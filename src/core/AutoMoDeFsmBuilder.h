@@ -26,60 +26,57 @@
 #include <iterator>
 #include <stdlib.h>
 
-
-namespace argos {
-	class AutoMoDeFsmBuilder {
-		public:
-			/*
+namespace argos
+{
+	class AutoMoDeFsmBuilder
+	{
+	public:
+		/*
 			 * Class constructor.
 			 */
-			AutoMoDeFsmBuilder();
+		AutoMoDeFsmBuilder();
 
-			/**
+		/**
 			 * Creates an AutoMoDeFiniteStateMachine based on a configuration as a vector of strings.
 			 * This method should be called when the FSM is created from the AutoMoDeMain.cpp.
 			 */
-			AutoMoDeFiniteStateMachine* BuildFiniteStateMachine(std::vector<std::string>& vec_fsm_config);
+		AutoMoDeFiniteStateMachine *BuildFiniteStateMachine(std::vector<std::string> &vec_fsm_config);
 
-			/**
+		/**
 			 * Creates an AutoMoDeFiniteStateMachine based on a configuration as a string.
 			 * This method should be called when the FSM is created from the AutoMoDeController.cpp.
 			 */
-			AutoMoDeFiniteStateMachine* BuildFiniteStateMachine(const std::string& str_fsm_config);
+		AutoMoDeFiniteStateMachine *BuildFiniteStateMachine(const std::string &str_fsm_config);
 
-			/*
+		/*
 			 * Class destructor.
 			 */
-			virtual ~AutoMoDeFsmBuilder();
+		virtual ~AutoMoDeFsmBuilder();
 
-		private:
-			/**
+	private:
+		/**
 			 * Creates a AutoMoDeBehaviour from a state configuration and add it to the
 			 * AutoMoDeFiniStateMachine in construction.
 			 * Strips the different transitions and calls HandleTransition for their creation.
 			 */
-			void HandleState(AutoMoDeFiniteStateMachine* c_fsm, std::vector<std::string>& vec_fsm_state_config);
+		void HandleState(AutoMoDeFiniteStateMachine *c_fsm, std::vector<std::string> &vec_fsm_state_config);
 
-			/**
+		/**
 			 * Creates a AutoMoDeCondition from a transition configuration and add it to the
 			 * AutoMoDeFiniStateMachine in construction.
 			 */
-			void HandleTransition(std::vector<std::string>& vec_fsm_transition_config,
-									const UInt32& un_initial_state_index, const UInt32& un_condition_index);
+		void HandleTransition(std::vector<std::string> &vec_fsm_transition_config,
+							  const UInt32 &un_initial_state_index, const UInt32 &un_condition_index);
 
-			/**
+		/**
 			 * Creates a list containing the indexes of the behaviours reachable from a given state.
 			 * Added for compatibility with irace interdependent parameters. 
 			 */
-			const std::vector<UInt32> GetPossibleDestinationBehaviour(const UInt32& un_initial_state_index);
+		const std::vector<UInt32> GetPossibleDestinationBehaviour(const UInt32 &un_initial_state_index);
 
-			UInt32 m_unNumberStates;
+		UInt32 m_unNumberStates;
 
-			bool isBT = false;
-			bool isFSM = false;
-
-			AutoMoDeFiniteStateMachine* cFiniteStateMachine;
-
+		AutoMoDeFiniteStateMachine *cFiniteStateMachine;
 	};
 }
 

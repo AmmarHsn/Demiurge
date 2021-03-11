@@ -45,6 +45,8 @@ namespace argos
 			 */
 		std::map<std::string, Real> m_mapParameters;
 
+		std::string m_parameterPath;
+
 		/*
 			 * The name of the behaviour.
 			 */
@@ -77,7 +79,6 @@ namespace argos
 		CRange<UInt32> m_cRandomStepsRange;
 
 		Real m_fSuccessProbabilityParameter;
-
 
 	public:
 		virtual ~AutoMoDeBehaviour();
@@ -119,10 +120,14 @@ namespace argos
 			 */
 		void AddParameter(const std::string &str_identifier, const Real &f_value);
 
+		void SetParameterPath(const std::string &f_value);
+
 		/*
 			 * Returns the value of a given parameter from the parameters map.
 			 */
 		const Real &GetParameter(const std::string &str_identifier);
+
+		const std::string GetParameterPath();
 
 		/*
 			 * Returns the whole parameters map.
@@ -181,7 +186,7 @@ namespace argos
 		/*
 			 * Setter for the shared pointer to the representation of the robot state.
 			 */
-		void SetRobotDAO(EpuckDAO *pc_robot_dao);
+		virtual void SetRobotDAO(EpuckDAO *pc_robot_dao);
 		/*
              * Data transform for color of the omnidirectional camera and LEDs.
              */
@@ -211,13 +216,14 @@ namespace argos
 
 		bool LightPerceived();
 
-		bool EvaluateBernoulliProbability(const Real& f_probability) const;
+		bool EvaluateBernoulliProbability(const Real &f_probability) const;
 
 		Real GetSuccessProbability() const;
 
 		/* Debug functions */
 
-		UInt32 LogRobotIdientifier() {
+		UInt32 LogRobotIdientifier()
+		{
 			return m_pcRobotDAO->GetRobotIdentifier();
 		};
 		/*

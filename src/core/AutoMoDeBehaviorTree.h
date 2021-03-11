@@ -39,6 +39,7 @@
 #include "../modules/AutoMoDeBehaviourStopTuttifrutti.h"
 #include "../modules/AutoMoDeBehaviourGoToColorTuttifrutti.h"
 #include "../modules/AutoMoDeBehaviourGoAwayColorTuttifrutti.h"
+#include "../modules/AutoMoDeBehaviourGenomeHarlequin.h"
 #include "../modules/AutoMoDeCondition.h"
 #include "../modules/AutoMoDeConditionBlackFloorChocolate.h"
 #include "../modules/AutoMoDeConditionGrayFloorChocolate.h"
@@ -52,64 +53,63 @@
 #include <ctime>
 #include <algorithm>
 
-namespace argos {
-	class AutoMoDeBehaviorTree {
+namespace argos
+{
+	class AutoMoDeBehaviorTree
+	{
 
-		public:
-
-			/*
+	public:
+		/*
 			 * Class constructor.
 			 */
-			AutoMoDeBehaviorTree();
+		AutoMoDeBehaviorTree();
 
-			/*
+		/*
 			 * Class destructor.
 			 */
-			virtual ~AutoMoDeBehaviorTree();
+		virtual ~AutoMoDeBehaviorTree();
 
-			/*
+		/*
 			 * Copy constructor.
 			 */
-			AutoMoDeBehaviorTree(const AutoMoDeBehaviorTree* pc_fsm);
+		AutoMoDeBehaviorTree(const AutoMoDeBehaviorTree *pc_fsm);
 
-			/*
+		/*
 			 * Initialize the Behavior Tree.
 			 */
-			void Init();
+		void Init();
 
-			/*
+		/*
 			 * Reset the Behavior Tree.
 			 */
-			void Reset();
+		void Reset();
 
-			void ControlStep();
+		void ControlStep();
 
-			const UInt32& GetTimeStep() const;
+		const UInt32 &GetTimeStep() const;
 
-			const std::string GetReadableFormat();
+		const std::string GetReadableFormat();
 
-			void SetRootNode(Node* pc_root_node);
+		void SetRootNode(Node *pc_root_node);
 
-			Node* GetRootNode() const;
+		Node *GetRootNode() const;
 
-			void ShareRobotDAO();
+		void ShareRobotDAO();
 
-			void SetRobotDAO(EpuckDAO* m_pcRobotDAO);
+		void SetRobotDAO(EpuckDAO *m_pcRobotDAO);
 
-		private:
+	private:
+		Node *m_pcRootNode;
 
-			Node* m_pcRootNode;
-
-			/*
+		/*
 			 * Pointer to the object representing the state of the robot.
 			 * @see EpuckDAO.
 			 */
-			EpuckDAO* m_pcRobotDAO;
+		EpuckDAO *m_pcRobotDAO;
 
-			UInt32 m_unTimeStep;
+		UInt32 m_unTimeStep;
 
-			Node::ReturnState m_eTreeStatus;
-
+		Node::ReturnState m_eTreeStatus;
 	};
 }
 
