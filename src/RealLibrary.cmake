@@ -10,7 +10,6 @@ set(AUTOMODE_HEADERS
 	core/AutoMoDeFsmHistory.h
 	core/AutoMoDeBehaviorTree.h
 	core/AutoMoDeBehaviorTreeBuilder.h
-	core/AutoMoDeControllerBehaviorTree.h
 	core/bt/Action.h
 	core/bt/Condition.h
 	core/bt/NegationDecorator.h
@@ -38,6 +37,7 @@ set(AUTOMODE_HEADERS
 	modules/AutoMoDeBehaviourExplorationTuttifrutti.h
 	modules/AutoMoDeBehaviourGoAwayColorTuttifrutti.h
 	modules/AutoMoDeBehaviourGoToColorTuttifrutti.h
+	modules/AutoMoDeBehaviourGenomeHarlequin.h
 	# Conditions
 	modules/AutoMoDeCondition.h
 	modules/AutoMoDeConditionBlackFloorChocolate.h
@@ -46,7 +46,16 @@ set(AUTOMODE_HEADERS
 	modules/AutoMoDeConditionNeighborsCountChocolate.h
 	modules/AutoMoDeConditionInvertedNeighborsCountChocolate.h
 	modules/AutoMoDeConditionFixedProbabilityChocolate.h
-	modules/AutoMoDeConditionProbColorTuttifrutti.h)
+	modules/AutoMoDeConditionProbColorTuttifrutti.h
+	# NEAT
+	NEAT/gene.h
+	NEAT/genome.h
+	NEAT/innovation.h
+	NEAT/link.h
+	NEAT/neat.h
+	NEAT/network.h
+	NEAT/nnode.h
+	NEAT/trait.h)
 
 # Sources
 set(AUTOMODE_SOURCES
@@ -56,7 +65,6 @@ set(AUTOMODE_SOURCES
 	core/AutoMoDeFsmHistory.cpp
 	core/AutoMoDeBehaviorTree.cpp
 	core/AutoMoDeBehaviorTreeBuilder.cpp
-	core/AutoMoDeControllerBehaviorTree.cpp
 	core/bt/Action.cpp
 	core/bt/Condition.cpp
 	core/bt/NegationDecorator.cpp
@@ -84,6 +92,7 @@ set(AUTOMODE_SOURCES
 	modules/AutoMoDeBehaviourExplorationTuttifrutti.cpp
 	modules/AutoMoDeBehaviourGoAwayColorTuttifrutti.cpp
 	modules/AutoMoDeBehaviourGoToColorTuttifrutti.cpp
+	modules/AutoMoDeBehaviourGenomeHarlequin.cpp
 	# Conditions
 	modules/AutoMoDeCondition.cpp
 	modules/AutoMoDeConditionBlackFloorChocolate.cpp
@@ -92,7 +101,16 @@ set(AUTOMODE_SOURCES
 	modules/AutoMoDeConditionNeighborsCountChocolate.cpp
 	modules/AutoMoDeConditionInvertedNeighborsCountChocolate.cpp
 	modules/AutoMoDeConditionFixedProbabilityChocolate.cpp
-	modules/AutoMoDeConditionProbColorTuttifrutti.cpp)
+	modules/AutoMoDeConditionProbColorTuttifrutti.cpp
+	# NEAT
+	NEAT/gene.cpp
+	NEAT/genome.cpp
+	NEAT/innovation.cpp
+	NEAT/link.cpp
+	NEAT/neat.cpp
+	NEAT/network.cpp
+	NEAT/nnode.cpp
+	NEAT/trait.cpp)
 
 add_executable(automode ${AUTOMODE_HEADERS} ${AUTOMODE_SOURCES})
 target_link_libraries(automode argos3plugin_${ARGOS_BUILD_FOR}_epuck)

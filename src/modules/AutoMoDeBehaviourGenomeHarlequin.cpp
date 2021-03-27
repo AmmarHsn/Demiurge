@@ -62,27 +62,28 @@ namespace argos
 
 	void AutoMoDeBehaviourGenomeHarlequin::ControlStep()
 	{
+		
 		for (size_t i = 0; i < 25; i++)
 		{
 			m_inputs[i] = 0;
 		}
-
+		
 		CCI_EPuckProximitySensor::TReadings cProcessedProxiReadings = m_pcRobotDAO->GetProximityInput();
-
+		
 		// Injecting processed readings as input of the NN
 		// Proximity
 		for (size_t i = 0; i < 8; i++)
 		{
 			m_inputs[i] = cProcessedProxiReadings[i].Value;
 		}
-
+		
 		// Light
 		CCI_EPuckLightSensor::TReadings cProcessedLightReadings = m_pcRobotDAO->GetLightInput();
 		for (size_t i = 8; i < 16; i++)
 		{
 			m_inputs[i] = cProcessedLightReadings[i - 8].Value;
 		}
-
+		
 		// Ground
 		CCI_EPuckGroundSensor::SReadings cProcessedGroundReadings = m_pcRobotDAO->GetGroundInput();
 		for (size_t i = 16; i < 19; i++)
@@ -107,12 +108,12 @@ namespace argos
 					m_inputs[i] = m_GraySamplesRight[index];
 			}
 		}
-
+		
 		// Get RAB sensory data.
 		CCI_EPuckRangeAndBearingSensor::TPackets sLastPackets = m_pcRobotDAO->GetRangeAndBearingMessages();
 		CCI_EPuckRangeAndBearingSensor::TPackets::iterator it;
 		CVector2 cVectorCenterOfMass(0, CRadians::ZERO);
-
+		
 		// Center of mass
 		UInt32 unNbrSamples = 0;
 		for (it = sLastPackets.begin(); it != sLastPackets.end(); it++)
@@ -123,13 +124,14 @@ namespace argos
 				unNbrSamples += 1;
 			}
 		}
+		
 		if (unNbrSamples > 0)
 		{
 			cVectorCenterOfMass = cVectorCenterOfMass / unNbrSamples;
 		}
 
 		UInt8 unNumberNeighbors = m_pcRobotDAO->GetNumberNeighbors();
-
+		
 		// Set the RAB input of the NN
 		m_inputs[19] = 1 - (2 / (1 + exp(unNumberNeighbors))); // Saturate at 5, and is in [0,1]
 		for (int i = 20; i < 24; i++)
@@ -141,8 +143,6 @@ namespace argos
 
 		// Bias Unit
 		m_inputs[24] = 1;
-
-		//std::cout << "Before loading" << std::endl;
 
 		// Feed the network with those inputs
 		m_net->load_sensors((double *)m_inputs);
@@ -270,10 +270,7 @@ namespace argos
 	void AutoMoDeBehaviourGenomeHarlequin::SetRobotDAO(EpuckDAO *pc_robot_dao)
 	{
 		AutoMoDeBehaviour::SetRobotDAO(pc_robot_dao);
-		//std::cout << "WheelNull=" << (m_cWheelActuationRange.GetMax()) << std::endl;
-		//std::cout << "RobotNull=" << (m_pcRobotDAO!=NULL) << std::endl;
 		m_cWheelActuationRange.Set(-m_pcRobotDAO->GetMaxVelocity(), m_pcRobotDAO->GetMaxVelocity());
-		//std::cout << "WheelSet=" << (m_cWheelActuationRange.GetMax()) << std::endl;
 	}
 
 	/****************************************/
@@ -297,7 +294,7 @@ namespace argos
 
 	bool AutoMoDeBehaviourGenomeHarlequin::Failed()
 	{
-		return false; //(ObstacleInFront() || !LightPerceived());
+		return false;
 	}
 
 }

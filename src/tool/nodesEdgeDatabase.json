@@ -5,12 +5,16 @@
         "flavors": {
             "chocolate": 1,
             "tuttifrutti": 2,
-            "coconut": 3
+            "coconut": 3,
+            "maple": 4,
+            "harlequin": 5
         },
         "IDprefix": {
             "1": ["Ch", "Chocolate"],
             "2": ["Tu", "Tuttifrutti"],
-            "3": ["Co", "Coconut"]
+            "3": ["Co", "Coconut"],
+            "4": ["Ma", "Maple"],
+            "5": ["Ha", "Harlequin"]
         },
         "IDsuffix": {
             "0": ["Exp", "Exploration"],
@@ -112,14 +116,6 @@
                 "params": ["cle"]
             },
             {
-                "id": 22,
-                "params": []
-            },
-            {
-                "id": 23,
-                "params": []
-            },
-            {
                 "id": 24,
                 "params": ["att","cle"]
             },
@@ -158,6 +154,54 @@
             {
                 "id": 35,
                 "params": ["rwm", "exp", "mu", "rho", "rep"]
+            },
+            {
+                "id": 40,
+                "params": ["rwm"]
+            },
+            {
+                "id": 41,
+                "params": []
+            },
+            {
+                "id": 42,
+                "params": []
+            },
+            {
+                "id": 43,
+                "params": []
+            },
+            {
+                "id": 44,
+                "params": ["att"]
+            },
+            {
+                "id": 45,
+                "params": ["rep"]
+            },
+            {
+                "id": 50,
+                "params": []
+            },
+            {
+                "id": 51,
+                "params": []
+            },
+            {
+                "id": 52,
+                "params": []
+            },
+            {
+                "id": 53,
+                "params": []
+            },
+            {
+                "id": 54,
+                "params": []
+            },
+            {
+                "id": 55,
+                "params": []
             }
         ]
     },
@@ -274,6 +318,54 @@
             },
             {
                 "id": 35,
+                "params": ["p"]
+            },
+            {
+                "id": 40,
+                "params": ["p"]
+            },
+            {
+                "id": 41,
+                "params": ["p"]
+            },
+            {
+                "id": 42,
+                "params": ["p"]
+            },
+            {
+                "id": 43,
+                "params": ["w", "n"]
+            },
+            {
+                "id": 44,
+                "params": ["w", "n"]
+            },
+            {
+                "id": 45,
+                "params": ["p"]
+            },
+            {
+                "id": 50,
+                "params": ["p"]
+            },
+            {
+                "id": 51,
+                "params": ["p"]
+            },
+            {
+                "id": 52,
+                "params": ["p"]
+            },
+            {
+                "id": 53,
+                "params": ["w", "n"]
+            },
+            {
+                "id": 54,
+                "params": ["w", "n"]
+            },
+            {
+                "id": 55,
                 "params": ["p"]
             }
         ]

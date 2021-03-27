@@ -21,7 +21,6 @@
 
 #include "./core/AutoMoDeBehaviorTree.h"
 #include "./core/AutoMoDeBehaviorTreeBuilder.h"
-#include "./core/AutoMoDeControllerBehaviorTree.h"
 
 #include <argos3/demiurge/loop-functions/CoreLoopFunctions.h>
 

@@ -14,7 +14,6 @@
 #include <argos3/core/utility/logging/argos_log.h>
 #include <argos3/core/control_interface/ci_controller.h>
 
-#include <argos3/demiurge/epuck-dao/EpuckDAO.h>
 #include <argos3/demiurge/epuck-dao/ReferenceModel3Dot0.h>
 
 
@@ -115,14 +114,15 @@ namespace argos{
 			UInt32 m_unRobotID;
 
 			/*
-			 * String that contains the configuration of the finite state machine.
+			 * String that contains the configuration.
 			 */
-			std::string m_strFsmConfiguration;
+			std::string m_strConfiguration;
 
 			/*
-			 * String that contains the configuration of the behavior tree.
+			 * to make the distinction between finite state machine and behavior tree.
 			 */
-			std::string m_strBtConfiguration;
+			bool isFSM;
+			bool isBT;
 
 			/*
 			 * Flag that tells whether an history is maintained or not.

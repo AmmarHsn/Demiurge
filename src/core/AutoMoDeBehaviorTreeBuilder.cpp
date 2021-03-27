@@ -200,6 +200,17 @@ namespace argos {
 	Action* AutoMoDeBehaviorTreeBuilder::HandleAction(std::vector<std::string>& vec_bt_action_config) {
 		Action* pcActionNode = new Action();
 		AutoMoDeBehaviour* pcNewBehaviour;
+		std::string sPathToGenomeFile;
+		std::string sPathToConfigurationFile = std::string(std::getenv("HOME")) + std::string("/.config/AutoMoDe_Harlequin.conf");
+		std::ifstream cConfigurationFile(sPathToConfigurationFile.c_str());
+		if (cConfigurationFile.is_open())
+		{
+			std::getline(cConfigurationFile, sPathToGenomeFile);
+		}
+		else
+		{
+			THROW_ARGOSEXCEPTION("Config file not found : Impossible to locate genes directory");
+		}
 		std::vector<std::string>::iterator it;
 		// Extraction of the index of the node
 		std::string strNodeIndex =  (*vec_bt_action_config.begin()).substr(3, m_unMaxTreeLevel+1).c_str();
@@ -208,6 +219,60 @@ namespace argos {
 
 		// Creation of the Behaviour object
 		switch(unBehaviourIdentifier) {
+			case 10:
+				pcNewBehaviour = new AutoMoDeBehaviourExplorationChocolate();
+				break;
+			case 11:
+				pcNewBehaviour = new AutoMoDeBehaviourStopChocolate();
+				break;
+			case 12:
+				pcNewBehaviour = new AutoMoDeBehaviourPhototaxisChocolate();
+				break;
+			case 13:
+				pcNewBehaviour = new AutoMoDeBehaviourAntiPhototaxisChocolate();
+				break;
+			case 14:
+				pcNewBehaviour = new AutoMoDeBehaviourAttractionChocolate();
+				break;
+			case 15:
+				pcNewBehaviour = new AutoMoDeBehaviourRepulsionChocolate();
+				break;
+			case 20:
+				pcNewBehaviour = new AutoMoDeBehaviourExplorationTuttifrutti();
+				break;
+			case 21:
+				pcNewBehaviour = new AutoMoDeBehaviourStopTuttifrutti();
+				break;
+			case 24:
+				pcNewBehaviour = new AutoMoDeBehaviourAttractionTuttifrutti();
+				break;
+			case 25:
+				pcNewBehaviour = new AutoMoDeBehaviourRepulsionTuttifrutti();
+				break;
+			case 28:
+				pcNewBehaviour = new AutoMoDeBehaviourGoToColorTuttifrutti();
+				break;
+			case 29:
+				pcNewBehaviour = new AutoMoDeBehaviourGoAwayColorTuttifrutti();
+				break;
+			case 30:
+				pcNewBehaviour = new AutoMoDeBehaviourExplorationCoconut();
+				break;
+			case 31:
+				pcNewBehaviour = new AutoMoDeBehaviourStopChocolate();
+				break;
+			case 32:
+				pcNewBehaviour = new AutoMoDeBehaviourPhototaxisCoconut();
+				break;
+			case 33:
+				pcNewBehaviour = new AutoMoDeBehaviourAntiPhototaxisCoconut();
+				break;
+			case 34:
+				pcNewBehaviour = new AutoMoDeBehaviourAttractionCoconut();
+				break;
+			case 35:
+				pcNewBehaviour = new AutoMoDeBehaviourRepulsionCoconut();
+				break;
 			case 40:
 				pcNewBehaviour = new AutoMoDeBehaviourExplorationChocolate();
 				break;
@@ -225,6 +290,30 @@ namespace argos {
 				break;
 			case 45:
 				pcNewBehaviour = new AutoMoDeBehaviourRepulsionChocolate();
+				break;
+			case 50:
+				sPathToGenomeFile += "/gen/exploration";
+				pcNewBehaviour = new AutoMoDeBehaviourGenomeHarlequin("Exploration", sPathToGenomeFile);
+				break;
+			case 51:
+				sPathToGenomeFile += "/gen/stop";
+				pcNewBehaviour = new AutoMoDeBehaviourGenomeHarlequin("Stop", sPathToGenomeFile);
+				break;
+			case 52:
+				sPathToGenomeFile += "/gen/phototaxis";
+				pcNewBehaviour = new AutoMoDeBehaviourGenomeHarlequin("Phototaxis", sPathToGenomeFile);
+				break;
+			case 53:
+				sPathToGenomeFile += "/gen/antiphototaxis";
+				pcNewBehaviour = new AutoMoDeBehaviourGenomeHarlequin("Antiphototaxis", sPathToGenomeFile);
+				break;
+			case 54:
+				sPathToGenomeFile += "/gen/attraction";
+				pcNewBehaviour = new AutoMoDeBehaviourGenomeHarlequin("Attraction", sPathToGenomeFile);
+				break;
+			case 55:
+				sPathToGenomeFile += "/gen/repulsion";
+				pcNewBehaviour = new AutoMoDeBehaviourGenomeHarlequin("Repulsion", sPathToGenomeFile);
 				break;
 		}
 		pcNewBehaviour->SetIndex(0);
@@ -261,6 +350,63 @@ namespace argos {
 		UInt32 unConditionIdentifier = atoi((*(vec_bt_condition_config.begin()+1)).c_str());
 
 		switch(unConditionIdentifier) {
+			case 10:
+				pcNewCondition = new AutoMoDeConditionBlackFloorChocolate();
+				break;
+			case 11:
+				pcNewCondition = new AutoMoDeConditionGrayFloorChocolate();
+				break;
+			case 12:
+				pcNewCondition = new AutoMoDeConditionWhiteFloorChocolate();
+				break;
+			case 13:
+				pcNewCondition = new AutoMoDeConditionNeighborsCountChocolate();
+				break;
+			case 14:
+				pcNewCondition = new AutoMoDeConditionInvertedNeighborsCountChocolate();
+				break;
+			case 15:
+				pcNewCondition = new AutoMoDeConditionFixedProbabilityChocolate();
+				break;
+			case 20:
+				pcNewCondition = new AutoMoDeConditionBlackFloorChocolate();
+				break;
+			case 21:
+				pcNewCondition = new AutoMoDeConditionGrayFloorChocolate();
+				break;
+			case 22:
+				pcNewCondition = new AutoMoDeConditionWhiteFloorChocolate();
+				break;
+			case 23:
+				pcNewCondition = new AutoMoDeConditionNeighborsCountChocolate();
+				break;
+			case 24:
+				pcNewCondition = new AutoMoDeConditionInvertedNeighborsCountChocolate();
+				break;
+			case 25:
+				pcNewCondition = new AutoMoDeConditionFixedProbabilityChocolate();
+				break;
+			case 27:
+				pcNewCondition = new AutoMoDeConditionProbColorTuttifrutti();
+				break;
+			case 30:
+				pcNewCondition = new AutoMoDeConditionBlackFloorChocolate();
+				break;
+			case 31:
+				pcNewCondition = new AutoMoDeConditionGrayFloorChocolate();
+				break;
+			case 32:
+				pcNewCondition = new AutoMoDeConditionWhiteFloorChocolate();
+				break;
+			case 33:
+				pcNewCondition = new AutoMoDeConditionNeighborsCountChocolate();
+				break;
+			case 34:
+				pcNewCondition = new AutoMoDeConditionInvertedNeighborsCountChocolate();
+				break;
+			case 35:
+				pcNewCondition = new AutoMoDeConditionFixedProbabilityChocolate();
+				break;
 			case 40:
 				pcNewCondition = new AutoMoDeConditionBlackFloorChocolate();
 				break;
@@ -277,6 +423,24 @@ namespace argos {
 				pcNewCondition = new AutoMoDeConditionInvertedNeighborsCountChocolate();
 				break;
 			case 45:
+				pcNewCondition = new AutoMoDeConditionFixedProbabilityChocolate();
+				break;
+			case 50:
+				pcNewCondition = new AutoMoDeConditionBlackFloorChocolate();
+				break;
+			case 51:
+				pcNewCondition = new AutoMoDeConditionGrayFloorChocolate();
+				break;
+			case 52:
+				pcNewCondition = new AutoMoDeConditionWhiteFloorChocolate();
+				break;
+			case 53:
+				pcNewCondition = new AutoMoDeConditionNeighborsCountChocolate();
+				break;
+			case 54:
+				pcNewCondition = new AutoMoDeConditionInvertedNeighborsCountChocolate();
+				break;
+			case 55:
 				pcNewCondition = new AutoMoDeConditionFixedProbabilityChocolate();
 				break;
 		}

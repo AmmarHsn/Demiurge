@@ -18,13 +18,14 @@ namespace argos {
 	AutoMoDeController::AutoMoDeController() {
 		m_pcRobotState = new ReferenceModel3Dot0();
 		m_unTimeStep = 0;
-		m_strFsmConfiguration = "";
-		m_strBtConfiguration = "";
+		m_strConfiguration = "";
 		m_bMaintainHistory = false;
 		m_bPrintReadableFsm = false;
 		m_strHistoryFolder = "./";
 		m_bFiniteStateMachineGiven = false;
 		m_bBehaviorTreeGiven = false;
+		isFSM = false;
+		isBT = false;
 	}
 
 	/****************************************/
@@ -32,10 +33,10 @@ namespace argos {
 
 	AutoMoDeController::~AutoMoDeController() {
 		delete m_pcRobotState;
-		if (m_strFsmConfiguration.compare("") != 0) {
+		if (isFSM) {
 			delete m_pcFsmBuilder;
 		}
-		else if(m_strBtConfiguration.compare("") != 0){
+		else if(isBT){
 			delete m_pcBehaviorTree;
 		}
 	}
@@ -46,8 +47,7 @@ namespace argos {
 	void AutoMoDeController::Init(TConfigurationNode& t_node) {
 		// Parsing parameters
 		try {
-			GetNodeAttributeOrDefault(t_node, "fsm-config", m_strFsmConfiguration, m_strFsmConfiguration);
-			GetNodeAttributeOrDefault(t_node, "bt-config", m_strBtConfiguration, m_strBtConfiguration);
+			GetNodeAttributeOrDefault(t_node, "config", m_strConfiguration, m_strConfiguration);
 			GetNodeAttributeOrDefault(t_node, "history", m_bMaintainHistory, m_bMaintainHistory);
 			GetNodeAttributeOrDefault(t_node, "hist-folder", m_strHistoryFolder, m_strHistoryFolder);
 			GetNodeAttributeOrDefault(t_node, "readable", m_bPrintReadableFsm, m_bPrintReadableFsm);
@@ -57,13 +57,19 @@ namespace argos {
 
 		m_unRobotID = atoi(GetId().substr(5, 6).c_str());
 		m_pcRobotState->SetRobotIdentifier(m_unRobotID);
+		
+		if(m_strConfiguration.find("--fsm-config") != std::string::npos){
+			isFSM = true;
+		}else if(m_strConfiguration.find("--bt-config") != std::string::npos){
+			isBT = true;
+		}
 
 		/*
 		 * If a FSM configuration is given as parameter of the experiment file, create a FSM from it
 		 */
-		if (m_strFsmConfiguration.compare("") != 0 && !m_bFiniteStateMachineGiven) {
+		if (isFSM && m_strConfiguration.compare("") != 0 && !m_bFiniteStateMachineGiven) {
 			m_pcFsmBuilder = new AutoMoDeFsmBuilder();
-			SetFiniteStateMachine(m_pcFsmBuilder->BuildFiniteStateMachine(m_strFsmConfiguration));
+			SetFiniteStateMachine(m_pcFsmBuilder->BuildFiniteStateMachine(m_strConfiguration));
 			if (m_bMaintainHistory) {
 				m_pcFiniteStateMachine->SetHistoryFolder(m_strHistoryFolder);
 				m_pcFiniteStateMachine->MaintainHistory();
@@ -72,9 +78,9 @@ namespace argos {
 				std::cout << "Finite State Machine description: " << std::endl;
 				std::cout << m_pcFiniteStateMachine->GetReadableFormat() << std::endl;
 			}
-		}else if (m_strBtConfiguration.compare("") != 0 && !m_bBehaviorTreeGiven) {
+		}else if (isBT && m_strConfiguration.compare("") != 0 && !m_bBehaviorTreeGiven) {
 			m_pcBtBuilder = new AutoMoDeBehaviorTreeBuilder();
-			SetBehaviorTree(m_pcBtBuilder->BuildBehaviorTree(m_strBtConfiguration));
+			SetBehaviorTree(m_pcBtBuilder->BuildBehaviorTree(m_strConfiguration));
 			if (m_bMaintainHistory) {
 				//m_pcFiniteStateMachine->SetHistoryFolder(m_strHistoryFolder);
 				//m_pcFiniteStateMachine->MaintainHistory();

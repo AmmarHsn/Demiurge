@@ -102,7 +102,6 @@ namespace argos
 		UInt8 unBehaviourIndex = atoi((*vec_fsm_state_config.begin()).substr(3, 4).c_str());
 		// Extraction of the identifier of the behaviour
 		UInt8 unBehaviourIdentifier = atoi((*(vec_fsm_state_config.begin() + 1)).c_str());
-
 		// Creation of the Behaviour object
 		switch (unBehaviourIdentifier)
 		{
@@ -129,12 +128,6 @@ namespace argos
 			break;
 		case 21:
 			cNewBehaviour = new AutoMoDeBehaviourStopTuttifrutti();
-			break;
-		case 22:
-			cNewBehaviour = new AutoMoDeBehaviourPhototaxisChocolate();
-			break;
-		case 23:
-			cNewBehaviour = new AutoMoDeBehaviourAntiPhototaxisChocolate();
 			break;
 		case 24:
 			cNewBehaviour = new AutoMoDeBehaviourAttractionTuttifrutti();
@@ -166,29 +159,48 @@ namespace argos
 		case 35:
 			cNewBehaviour = new AutoMoDeBehaviourRepulsionCoconut();
 			break;
+		case 40:
+			cNewBehaviour = new AutoMoDeBehaviourExplorationChocolate();
+			break;
+		case 41:
+			cNewBehaviour = new AutoMoDeBehaviourStopChocolate();
+			break;
+		case 42:
+			cNewBehaviour = new AutoMoDeBehaviourPhototaxisChocolate();
+			break;
+		case 43:
+			cNewBehaviour = new AutoMoDeBehaviourAntiPhototaxisChocolate();
+			break;
+		case 44:
+			cNewBehaviour = new AutoMoDeBehaviourAttractionChocolate();
+			break;
+		case 45:
+			cNewBehaviour = new AutoMoDeBehaviourRepulsionChocolate();
+			break;
 		case 50:
 			sPathToGenomeFile += "/gen/exploration";
-			cNewBehaviour = new AutoMoDeBehaviourGenome("Exploration", sPathToGenomeFile);
+			cNewBehaviour = new AutoMoDeBehaviourGenomeHarlequin("Exploration", sPathToGenomeFile);
 			break;
 		case 51:
 			sPathToGenomeFile += "/gen/stop";
-			cNewBehaviour = new AutoMoDeBehaviourGenome("Stop", sPathToGenomeFile);
+			cNewBehaviour = new AutoMoDeBehaviourGenomeHarlequin("Stop", sPathToGenomeFile);
 			break;
 		case 52:
 			sPathToGenomeFile += "/gen/phototaxis";
-			cNewBehaviour = new AutoMoDeBehaviourGenome("Phototaxis", sPathToGenomeFile);
+			cNewBehaviour = new AutoMoDeBehaviourGenomeHarlequin("Phototaxis", sPathToGenomeFile);
 			break;
 		case 53:
 			sPathToGenomeFile += "/gen/antiphototaxis";
-			cNewBehaviour = new AutoMoDeBehaviourGenome("Antiphototaxis", sPathToGenomeFile);
+			cNewBehaviour = new AutoMoDeBehaviourGenomeHarlequin("Antiphototaxis", sPathToGenomeFile);
 			break;
 		case 54:
 			sPathToGenomeFile += "/gen/attraction";
-			cNewBehaviour = new AutoMoDeBehaviourGenome("Attraction", sPathToGenomeFile);
+			cNewBehaviour = new AutoMoDeBehaviourGenomeHarlequin("Attraction", sPathToGenomeFile);
 			break;
 		case 55:
 			sPathToGenomeFile += "/gen/repulsion";
-			cNewBehaviour = new AutoMoDeBehaviourGenome("Repulsion", sPathToGenomeFile);
+			cNewBehaviour = new AutoMoDeBehaviourGenomeHarlequin("Repulsion", sPathToGenomeFile);
+			break;
 		}
 
 		cNewBehaviour->SetIndex(unBehaviourIndex);
@@ -329,6 +341,24 @@ namespace argos
 				cNewCondition = new AutoMoDeConditionInvertedNeighborsCountChocolate();
 				break;
 			case 35:
+				cNewCondition = new AutoMoDeConditionFixedProbabilityChocolate();
+				break;
+			case 40:
+				cNewCondition = new AutoMoDeConditionBlackFloorChocolate();
+				break;
+			case 41:
+				cNewCondition = new AutoMoDeConditionGrayFloorChocolate();
+				break;
+			case 42:
+				cNewCondition = new AutoMoDeConditionWhiteFloorChocolate();
+				break;
+			case 43:
+				cNewCondition = new AutoMoDeConditionNeighborsCountChocolate();
+				break;
+			case 44:
+				cNewCondition = new AutoMoDeConditionInvertedNeighborsCountChocolate();
+				break;
+			case 45:
 				cNewCondition = new AutoMoDeConditionFixedProbabilityChocolate();
 				break;
 			case 50:
