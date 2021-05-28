@@ -70,6 +70,13 @@ int main(int n_argc, char** ppch_argv) {
 	std::string strFsmFile;
 
 	std::vector<AutoMoDeFiniteStateMachine*> vecFsm;
+	
+	std::vector<std::string> vecConfigBT;
+	bool bBTControllerFound = false;
+	bool bBTFileFound = false;
+	std::string strBTFile;
+
+	std::vector<AutoMoDeBehaviorTree*> vecBT;
 
 	try {
 		// Cutting off the FSM configuration from the command line
@@ -84,7 +91,7 @@ int main(int n_argc, char** ppch_argv) {
 		}
 
 		nCurrentArgument = 1;
-		while(!bFsmControllerFound && nCurrentArgument < n_argc) {
+		while(!bBTControllerFound && !bFsmControllerFound && nCurrentArgument < n_argc) {
 			if(strcmp(ppch_argv[nCurrentArgument], "--fsm-config") == 0) {
 				bFsmControllerFound = true;
 				nCurrentArgument++;
@@ -95,40 +102,33 @@ int main(int n_argc, char** ppch_argv) {
 				// Do not take the FSM configuration into account in the standard command line parsing.
 				n_argc = n_argc - vecConfigFsm.size() - 1;
 			}
+			else if(strcmp(ppch_argv[nCurrentArgument], "--bt-config") == 0) {
+				bBTControllerFound = true;
+				nCurrentArgument++;
+				while (nCurrentArgument < n_argc) {
+					vecConfigBT.push_back(std::string(ppch_argv[nCurrentArgument]));
+					nCurrentArgument++;
+				}
+				// Do not take the FSM configuration into account in the standard command line parsing.
+				n_argc = n_argc - vecConfigBT.size() - 1;
+			}
 			nCurrentArgument++;
 		}
 
 		nCurrentArgument = 1;
-		while(!bFsmFileFound && nCurrentArgument < n_argc) {
-			if(strcmp(ppch_argv[nCurrentArgument], "--fsm-file") == 0) {
-				bFsmFileFound = true;
-				nCurrentArgument++;
-				strFsmFile = std::string(ppch_argv[nCurrentArgument]);
-      }
-		}
+		if(bFsmControllerFound){
+			while(!bFsmFileFound && nCurrentArgument < n_argc) {
+				if(strcmp(ppch_argv[nCurrentArgument], "--fsm-file") == 0) {
+					bFsmFileFound = true;
+					nCurrentArgument++;
+					strFsmFile = std::string(ppch_argv[nCurrentArgument]);
+	      }
+			}
 
-		AutoMoDeFsmBuilder cBuilder = AutoMoDeFsmBuilder();
+			AutoMoDeFsmBuilder cBuilder = AutoMoDeFsmBuilder();
 
-		if (bFsmControllerFound) {
-			AutoMoDeFiniteStateMachine* pcFiniteStateMachine = cBuilder.BuildFiniteStateMachine(vecConfigFsm);
-
-			std::string strFiniteStateMachineURL = pcFiniteStateMachine->GetReadableFormat();
-			//std::cout << strFiniteStateMachineURL << std::endl;
-
-			std::string strBrowser = "firefox \"";
-			strBrowser.append(EncodeURL(strFiniteStateMachineURL));
-			strBrowser.append("\"");
-
-			system(strBrowser.c_str());
-		}
-
-		if (bFsmFileFound) {
-			std::ifstream file(strFsmFile.c_str()); // pass file name as argment
-		  std::string linebuffer;
-
-			while (file && getline(file, linebuffer)){
-				if (linebuffer.length() == 0)continue;
-				AutoMoDeFiniteStateMachine* pcFiniteStateMachine = cBuilder.BuildFiniteStateMachine(linebuffer.c_str());
+			if (bFsmControllerFound) {
+				AutoMoDeFiniteStateMachine* pcFiniteStateMachine = cBuilder.BuildFiniteStateMachine(vecConfigFsm);
 
 				std::string strFiniteStateMachineURL = pcFiniteStateMachine->GetReadableFormat();
 				//std::cout << strFiniteStateMachineURL << std::endl;
@@ -138,6 +138,67 @@ int main(int n_argc, char** ppch_argv) {
 				strBrowser.append("\"");
 
 				system(strBrowser.c_str());
+			}
+
+			if (bFsmFileFound) {
+				std::ifstream file(strFsmFile.c_str()); // pass file name as argment
+			  std::string linebuffer;
+
+				while (file && getline(file, linebuffer)){
+					if (linebuffer.length() == 0)continue;
+					AutoMoDeFiniteStateMachine* pcFiniteStateMachine = cBuilder.BuildFiniteStateMachine(linebuffer.c_str());
+
+					std::string strFiniteStateMachineURL = pcFiniteStateMachine->GetReadableFormat();
+					//std::cout << strFiniteStateMachineURL << std::endl;
+
+					std::string strBrowser = "firefox \"";
+					strBrowser.append(EncodeURL(strFiniteStateMachineURL));
+					strBrowser.append("\"");
+
+					system(strBrowser.c_str());
+				}
+			}
+		}
+		else if(bBTControllerFound){
+			while(!bBTFileFound && nCurrentArgument < n_argc) {
+				if(strcmp(ppch_argv[nCurrentArgument], "--bt-file") == 0) {
+					bBTFileFound = true;
+					nCurrentArgument++;
+					strBTFile = std::string(ppch_argv[nCurrentArgument]);
+	      }
+			}
+
+			AutoMoDeBehaviorTreeBuilder cBuilder = AutoMoDeBehaviorTreeBuilder();
+
+			if (bBTControllerFound) {
+				AutoMoDeBehaviorTree* pcBehaviorTree = cBuilder.BuildBehaviorTree(vecConfigBT);
+
+				std::string strBehaviorTreeURL = pcBehaviorTree->GetReadableFormat();
+
+				std::string strBrowser = "firefox \"";
+				strBrowser.append(EncodeURL(strBehaviorTreeURL));
+				strBrowser.append("\"");
+
+				system(strBrowser.c_str());
+			}
+
+			if (bBTFileFound) {
+				std::ifstream file(strBTFile.c_str()); // pass file name as argment
+			  std::string linebuffer;
+
+				while (file && getline(file, linebuffer)){
+					if (linebuffer.length() == 0)continue;
+					AutoMoDeBehaviorTree* pcBehaviorTree = cBuilder.BuildBehaviorTree(linebuffer.c_str());
+
+					std::string strBehaviorTreeURL = pcBehaviorTree->GetReadableFormat();
+					//std::cout << strFiniteStateMachineURL << std::endl;
+
+					std::string strBrowser = "firefox \"";
+					strBrowser.append(EncodeURL(strBehaviorTreeURL));
+					strBrowser.append("\"");
+
+					system(strBrowser.c_str());
+				}
 			}
 		}
 	} catch(std::exception& ex) {

@@ -44,75 +44,51 @@ int main(int n_argc, char** ppch_argv) {
 	bool bHistory = false;
 
 	bool bReadableFSM = false;
-	bool bReadableBT = false;
-	std::vector<std::string> vecConfig;
-	bool bControllerFound = false;
+	std::vector<std::string> vecConfigFsm;
+	bool bFsmControllerFound = false;
 	UInt32 unSeed = 0;
+	
+	bool bReadableBT = false;
+	std::vector<std::string> vecConfigBt;
+	bool bBtControllerFound = false;
 
 	std::vector<AutoMoDeFiniteStateMachine*> vecFsm;
-	std::vector<AutoMoDeBehaviorTree*> vecBt;
-
-	bool isFSM = false;
-	bool isBT = false;
+	std::vector<AutoMoDeBehaviorTree*> vecBehaviorTrees;
 
 	try {
 		// Cutting off the FSM configuration from the command line
 
 		int nCurrentArgument = 1;
-		while(!bControllerFound && nCurrentArgument < n_argc) {
+		while(!bBtControllerFound && !bFsmControllerFound && nCurrentArgument < n_argc) {
 			if(strcmp(ppch_argv[nCurrentArgument], "--fsm-config") == 0) {
-				bControllerFound = true;
+				bFsmControllerFound = true;
 				nCurrentArgument++;
 				while (nCurrentArgument < n_argc) {
-					vecConfig.push_back(std::string(ppch_argv[nCurrentArgument]));
+					vecConfigFsm.push_back(std::string(ppch_argv[nCurrentArgument]));
 					nCurrentArgument++;
 				}
 				// Do not take the FSM configuration into account in the standard command line parsing.
-				n_argc = n_argc - vecConfig.size() - 1;
-				isFSM = true;
-				isBT = false;
-			}else if(strcmp(ppch_argv[nCurrentArgument], "--bt-config")==0){
-				bControllerFound = true;
+				n_argc = n_argc - vecConfigFsm.size() - 1;
+			}
+			else if(strcmp(ppch_argv[nCurrentArgument], "--bt-config") == 0) {
+				bBtControllerFound = true;
 				nCurrentArgument++;
 				while (nCurrentArgument < n_argc) {
-					vecConfig.push_back(std::string(ppch_argv[nCurrentArgument]));
+					vecConfigBt.push_back(std::string(ppch_argv[nCurrentArgument]));
 					nCurrentArgument++;
 				}
 				// Do not take the FSM configuration into account in the standard command line parsing.
-				n_argc = n_argc - vecConfig.size() - 1;
-				isBT = true;
-				isFSM = false;
+				n_argc = n_argc - vecConfigBt.size() - 1;
 			}
 			nCurrentArgument++;
 		}
-		if (!bControllerFound) {
+		if (!bFsmControllerFound && !bBtControllerFound) {
 			THROW_ARGOSEXCEPTION(ExplainParameters());
 		}
-
-		/*std::vector<std::string>::iterator it;
-
-		it = std::find(vecConfig.begin(), vecConfig.end(), "--fsm-config");
-		//s.find(bar) != std::string::npos
-		if(it != vecConfig.end()){
-			isFSM = true;
-		}
-		else{
-			it = std::find(vecConfig.begin(), vecConfig.end(), "--bt-config");
-			if(it != vecConfig.end()){
-				isBT = true;
-			}
-		}*/
-		/*
-		if(strcmp((*(it+1)).c_str(), "fsm") == 0){
-			isFSM = true;
-		}else if(strcmp((*(it+1)).c_str(), "bt") == 0){
-			isBT = true;
-		}*/
 
 		// Configure the command line options
 		CARGoSCommandLineArgParser cACLAP;
 		cACLAP.AddFlag('r', "readable-fsm", "", bReadableFSM);
-
 		cACLAP.AddFlag('r', "readable-bt", "", bReadableBT);
 
 		cACLAP.AddFlag('t', "history", "", bHistory);
@@ -126,72 +102,94 @@ int main(int n_argc, char** ppch_argv) {
 
 		switch(cACLAP.GetAction()) {
     	case CARGoSCommandLineArgParser::ACTION_RUN_EXPERIMENT: {
-				CDynamicLoading::LoadAllLibraries();
-				cSimulator.SetExperimentFileName(cACLAP.GetExperimentConfigFile());
-				AutoMoDeFiniteStateMachine* pcFiniteStateMachine;
-				AutoMoDeBehaviorTree* pcBehaviorTree;
-				// Creation of the finite state machine.
-				if(isFSM){
+    				if(bFsmControllerFound){
+					CDynamicLoading::LoadAllLibraries();
+					cSimulator.SetExperimentFileName(cACLAP.GetExperimentConfigFile());
+
+					// Creation of the finite state machine.
+
 					AutoMoDeFsmBuilder cBuilder = AutoMoDeFsmBuilder();
-					pcFiniteStateMachine = cBuilder.BuildFiniteStateMachine(vecConfig);
-				}
-				else if(isBT){
-					AutoMoDeBehaviorTreeBuilder cBuilder = AutoMoDeBehaviorTreeBuilder();
-					pcBehaviorTree = cBuilder.BuildBehaviorTree(vecConfig);
-				}
-				
+					AutoMoDeFiniteStateMachine* pcFiniteStateMachine = cBuilder.BuildFiniteStateMachine(vecConfigFsm);
 
-				// If the URL of the finite state machine is requested, display it.
-				if (bReadableFSM) {
-					std::cout << "Finite State Machine description: " << std::endl;
-					std::cout << pcFiniteStateMachine->GetReadableFormat() << std::endl;
-				}else if(bReadableBT){
-					std::cout << "Behavior Tree description: " << std::endl;
-					std::cout << pcBehaviorTree->GetReadableFormat() << std::endl;
-				}
-
-				// Setting random seed. Only works with modified version of ARGoS3.
-				cSimulator.SetRandomSeed(unSeed);
-
-				cSimulator.LoadExperiment();
-
-				// Duplicate the finite state machine and pass it to all robots.
-				CSpace::TMapPerType cEntities = cSimulator.GetSpace().GetEntitiesByType("controller");
-				AutoMoDeFiniteStateMachine* pcPersonalFsm;
-				AutoMoDeBehaviorTree* pcPersonalBt;
-				for (CSpace::TMapPerType::iterator it = cEntities.begin(); it != cEntities.end(); ++it) {
-					CControllableEntity* pcEntity = any_cast<CControllableEntity*>(it->second);
-					if(isFSM){
-						pcPersonalFsm = new AutoMoDeFiniteStateMachine(pcFiniteStateMachine);
-						vecFsm.push_back(pcPersonalFsm);
-					}else if(isBT){
-						pcPersonalBt = new AutoMoDeBehaviorTree(pcBehaviorTree);
-						vecBt.push_back(pcPersonalBt);
+					// If the URL of the finite state machine is requested, display it.
+					if (bReadableFSM) {
+						std::cout << "Finite State Machine description: " << std::endl;
+						std::cout << pcFiniteStateMachine->GetReadableFormat() << std::endl;
 					}
-					
-					try {
-						if(isFSM){
+
+					// Setting random seed. Only works with modified version of ARGoS3.
+					cSimulator.SetRandomSeed(unSeed);
+
+					cSimulator.LoadExperiment();
+
+					// Duplicate the finite state machine and pass it to all robots.
+					CSpace::TMapPerType cEntities = cSimulator.GetSpace().GetEntitiesByType("controller");
+					for (CSpace::TMapPerType::iterator it = cEntities.begin(); it != cEntities.end(); ++it) {
+						CControllableEntity* pcEntity = any_cast<CControllableEntity*>(it->second);
+						AutoMoDeFiniteStateMachine* pcPersonalFsm = new AutoMoDeFiniteStateMachine(pcFiniteStateMachine);
+						vecFsm.push_back(pcPersonalFsm);
+						try {
 							AutoMoDeController& cController = dynamic_cast<AutoMoDeController&> (pcEntity->GetController());
 							cController.SetFiniteStateMachine(pcPersonalFsm);
 							cController.SetHistoryFlag(bHistory);
-						}else if(isBT){
+						} catch (std::exception& ex) {
+							LOGERR << "Error while casting: " << ex.what() << std::endl;
+						}
+					}
+
+					cSimulator.Execute();
+
+					// Retrieval of the score of the swarm driven by the Finite State Machine
+					CoreLoopFunctions& cLoopFunctions = dynamic_cast<CoreLoopFunctions&> (cSimulator.GetLoopFunctions());
+					Real fObjectiveFunction = cLoopFunctions.GetObjectiveFunction();
+					std::cout << "Score " << fObjectiveFunction << std::endl;
+
+					break;
+				}
+				else if(bBtControllerFound){
+					CDynamicLoading::LoadAllLibraries();
+					cSimulator.SetExperimentFileName(cACLAP.GetExperimentConfigFile());
+
+					// Creation of the finite state machine.
+
+					AutoMoDeBehaviorTreeBuilder cBuilder = AutoMoDeBehaviorTreeBuilder();
+					AutoMoDeBehaviorTree* pcBehaviorTree = cBuilder.BuildBehaviorTree(vecConfigBt);
+
+					// If the URL of the finite state machine is requested, display it.
+					if (bReadableBT) {
+						std::cout << "Behavior Tree description: " << std::endl;
+						std::cout << pcBehaviorTree->GetReadableFormat() << std::endl;
+					}
+
+					// Setting random seed. Only works with modified version of ARGoS3.
+					cSimulator.SetRandomSeed(unSeed);
+
+					cSimulator.LoadExperiment();
+
+					//Duplicate the behavior tree and pass it to all robots.
+					CSpace::TMapPerType cEntities = cSimulator.GetSpace().GetEntitiesByType("controller");
+					 for (CSpace::TMapPerType::iterator it = cEntities.begin(); it != cEntities.end(); ++it) {
+					 	CControllableEntity* pcEntity = any_cast<CControllableEntity*>(it->second);
+						AutoMoDeBehaviorTree* pcPersonalBt =new AutoMoDeBehaviorTree(pcBehaviorTree);
+						vecBehaviorTrees.push_back(pcPersonalBt);
+						try {
 							AutoMoDeController& cController = dynamic_cast<AutoMoDeController&> (pcEntity->GetController());
 							cController.SetBehaviorTree(pcPersonalBt);
+						} catch (std::exception& ex) {
+							LOGERR << "Error while casting: " << ex.what() << std::endl;
 						}
-						
-					} catch (std::exception& ex) {
-						LOGERR << "Error while casting: " << ex.what() << std::endl;
 					}
+
+					cSimulator.Execute();
+
+					// Retrieval of the score of the swarm driven by the Finite State Machine
+
+					CoreLoopFunctions& cLoopFunctions = dynamic_cast<CoreLoopFunctions&> (cSimulator.GetLoopFunctions());
+					Real fObjectiveFunction = cLoopFunctions.GetObjectiveFunction();
+					std::cout << "Score " << fObjectiveFunction << std::endl;
+
+					break;
 				}
-
-				cSimulator.Execute();
-
-				// Retrieval of the score of the swarm driven by the Finite State Machine
-				CoreLoopFunctions& cLoopFunctions = dynamic_cast<CoreLoopFunctions&> (cSimulator.GetLoopFunctions());
-				Real fObjectiveFunction = cLoopFunctions.GetObjectiveFunction();
-				std::cout << "Score " << fObjectiveFunction << std::endl;
-
-				break;
 			}
 
     	case CARGoSCommandLineArgParser::ACTION_QUERY:
@@ -221,16 +219,16 @@ int main(int n_argc, char** ppch_argv) {
     return 1;
   }
 
-	if(isFSM){
+	if(bFsmControllerFound){
 		for (unsigned int i = 0; i < vecFsm.size(); ++i) {
 			delete vecFsm.at(i);
 		}
-	}else if(isBT){
-		for (unsigned int i = 0; i < vecBt.size(); ++i) {
-			delete vecBt.at(i);
+	}
+	else if(bBtControllerFound){
+		for (unsigned int i = 0; i < vecBehaviorTrees.size(); ++i) {
+			delete vecBehaviorTrees.at(i);
 		}
 	}
-	
 
 
 	/* Everything's ok, exit */

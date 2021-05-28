@@ -122,3 +122,4 @@ target_link_libraries(automode_main automode argos3core_${ARGOS_BUILD_FOR} argos
 
 add_executable(visualize_fsm AutoMoDeVisualizeFSM.cpp)
 target_link_libraries(visualize_fsm automode argos3core_${ARGOS_BUILD_FOR} argos3plugin_${ARGOS_BUILD_FOR}_epuck argos3_demiurge_epuck_dao)
+
