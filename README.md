@@ -38,6 +38,8 @@ after compilation.
 - [demiurge-epuck-dao](https://github.com/dysoxor/demiurge-epuck-dao) (master)
 
 ### Compiling AutoMoDe:
+Once cloned, the path to the `gen` directory it has should be written in `~/.config/AutoMoDe_Harlequin.conf`.
+
     $ git clone https://github.com/demiurge-project/ARGoS3-AutoMoDe.git
     $ cd argos3-AutoMoDe
     $ mkdir build
