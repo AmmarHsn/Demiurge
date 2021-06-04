@@ -1,5 +1,5 @@
 # README
-ARGoS3-AutoMoDe
+Demiurge
 =====================
 
 All useful information about the ARGoS3-AutoMoDe package, including
@@ -31,9 +31,11 @@ after compilation.
 ## Installation
 ### Dependencies:
 - [ARGoS3](https://github.com/ilpincy/argos3) (3.0.0-beta48)
+  - If an error is encountered try to append following line in the `~/.bashrc`: `export LD_LIBRARY_PATH=/usr/local/lib/argos3:$LD_LIBRARY_PATH`
+- [ARGOS3-arena](https://github.com/dysoxor/argos3-arena) (master)
 - [argos3-epuck](https://github.com/demiurge-project/argos3-epuck) (v48)
 - [experiments-loop-functions](https://github.com/demiurge-project/experiments-loop-functions) (master)
-- [demiurge-epuck-dao](https://github.com/demiurge-project/demiurge-epuck-dao) (master)
+- [demiurge-epuck-dao](https://github.com/dysoxor/demiurge-epuck-dao) (master)
 
 ### Compiling AutoMoDe:
     $ git clone https://github.com/demiurge-project/ARGoS3-AutoMoDe.git
@@ -45,7 +47,12 @@ after compilation.
 Once compiled, the `bin/` folder should contain the `automode_main`
 executable.
 
+
 ## How to use
+
+### Design a configuration of an experiment:
+install the [visual design tool](https://github.com/KenN7/AutoMoDe-visualization-tool)
+
 ### Run a single experiment:
 To run a single experiment, you need to use the `automode_main`
 as follows:
