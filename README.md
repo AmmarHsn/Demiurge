@@ -49,6 +49,9 @@ Once cloned, the path to the `gen` directory it has should be written in `~/.con
 Once compiled, the `bin/` folder should contain the `automode_main`
 executable.
 
+### Alternative way to install the Demiurge framework
+The other way to install the Demiurge is to install the [virtual machine](https://drive.google.com/drive/folders/1-KawCwjC4dK4kBpLn4hq1PJVjRRtwILb?usp=sharing) on the [VirtualBox](https://www.virtualbox.org/). This virtual machine has already the Demiurge framework installed and ready to use on it.
+
 
 ## How to use
 
