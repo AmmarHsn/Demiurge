@@ -32,10 +32,10 @@ after compilation.
 ### Dependencies:
 - [ARGoS3](https://github.com/ilpincy/argos3) (3.0.0-beta48)
   - If an error is encountered try to append following line in the `~/.bashrc`: `export LD_LIBRARY_PATH=/usr/local/lib/argos3:$LD_LIBRARY_PATH`
-- [ARGOS3-arena](https://github.com/dysoxor/argos3-arena) (master)
+- [ARGOS3-arena](https://github.com/AmmarHsn/argos3-arena) (master)
 - [argos3-epuck](https://github.com/demiurge-project/argos3-epuck) (v48)
 - [experiments-loop-functions](https://github.com/demiurge-project/experiments-loop-functions) (master)
-- [demiurge-epuck-dao](https://github.com/dysoxor/demiurge-epuck-dao) (master)
+- [demiurge-epuck-dao](https://github.com/AmmarHsn/demiurge-epuck-dao) (master)
 
 ### Compiling AutoMoDe:
 Once cloned, the path to the `gen` directory it has should be written in `~/.config/AutoMoDe_Harlequin.conf`.
