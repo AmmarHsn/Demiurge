@@ -47,8 +47,7 @@ start=`date +%s`
 
 # Now we can call AutoMoDe by building a command line with all parameters for it
 # and we collect its output that contains the score
-OUTPUT=$($EXE -n -c $INSTANCE --seed $SEED --fsm-config ${CONFIG_PARAMS})
-
+OUTPUT=$($EXE -n -c $INSTANCE --seed $SEED ${CONFIG_PARAMS})
 
 #end=`date +%s`
 
@@ -56,6 +55,7 @@ OUTPUT=$($EXE -n -c $INSTANCE --seed $SEED --fsm-config ${CONFIG_PARAMS})
 SCORE=$(echo ${OUTPUT} | grep -o -E 'Score [-+0-9.e]+' | cut -d ' ' -f2)
 if ! [[ "$SCORE" =~ ^[-+0-9.e]+$ ]] ; then
     error "Output is not a number"
+    
 fi
 
 #TIME=$(echo "$end - $start" | bc -l)
