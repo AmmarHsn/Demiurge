@@ -10,7 +10,7 @@ parameterFile = "./new_grammar.txt"
 
 #File that contains the options for parameter dependencies
 dependencyFile = "./depend_config.txt"
-forbiddenFile = "./my_forbbiden_file.txt"
+# forbiddenFile = "./my_forbbiden_file.txt"
 ## Directory where the programs will be run.
 execDir = "./execution-folder"
 
@@ -25,7 +25,7 @@ maxExperiments = 200
 ## real parameters.
 digits = 2
 
-nbIterations = 2
+# nbIterations = 2
 
 ## END of scenario file
 ############################################################################
